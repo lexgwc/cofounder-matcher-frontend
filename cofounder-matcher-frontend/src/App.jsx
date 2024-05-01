@@ -5,7 +5,6 @@ import './App.css'
 import { Route, Routes } from 'react-router-dom'
 
 // Components
-import { Flex, Text, Button } from '@radix-ui/themes';
 import HomePage from './pages/HomePage/HomePage.jsx'
 import ProfileSearch from './pages/ProfileSearch/ProfileSearch.jsx'
 import Conversations from './pages/Conversations/Conversations.jsx';
