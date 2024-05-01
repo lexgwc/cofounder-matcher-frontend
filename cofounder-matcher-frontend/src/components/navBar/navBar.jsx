@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './navBar.css';
-import { DropdownMenu, Button } from '@radix-ui/themes'
 import { removeToken } from '../../services/tokenServices';
 import { useNavigate } from 'react-router-dom';
+import { DropdownMenu, Button, Flex } from '@radix-ui/themes'
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +19,7 @@ const Navbar = () => {
     }
 
     return (
+      <Flex gap="3" justify="end">
         <DropdownMenu.Root open={isOpen} onOpenChange={setIsOpen}>
             <DropdownMenu.Trigger asChild>
                 <Button className="dropdown-trigger">Menu &#9776;</Button>
@@ -39,6 +40,7 @@ const Navbar = () => {
                 <Button className='logout' onClick={logOut}>Log Out</Button>
             </DropdownMenu.Content>
         </DropdownMenu.Root>
+        </Flex>
     )
 }
 
