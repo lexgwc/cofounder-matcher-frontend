@@ -3,6 +3,7 @@ import Filters from '../../components/filters/filters.jsx';
 import { Avatar, Grid, Button, Text, Card } from 
 '@radix-ui/themes';
 import { NavLink } from 'react-router-dom';
+import react, { useState} from 'react';
 
 const ProfileSearch = () => {
   return (
@@ -23,8 +24,8 @@ const ProfileSearch = () => {
         <Text>School</Text>
       </card>
       <text style={{ margin: '20px' }}>All Profile Information</text>
-      <Button>Skip for now</Button>
-      <button>Message<NavLink to='/conversation'>message</NavLink></button>
+      <Button>Skip for now</Button><br/><br/>
+      <Button><NavLink to='/conversation'>Message</NavLink></Button>
       </Grid>
 
 
