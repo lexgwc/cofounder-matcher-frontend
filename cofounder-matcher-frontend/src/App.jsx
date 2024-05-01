@@ -20,19 +20,18 @@ import Navbar from './components/navBar/navBar.jsx'
 function App() {
   return (
     <>
-    <Navbar />
-    <Routes>
-      <Route path='/' element={<HomePage />} />
-      <Route path='/profile-search' element={<ProfileSearch />} />
-      <Route path='/my-profile' element={<MyProfile />} />
-      <Route path='/conversations' element={<Conversations />} />
-      <Route path='/create-account' element={<CreateAccount />} />
-      <Route path='/create-profile' element={<CreateProfile />} />
-      <Route path='/login' element={<Login />} />
-      <Route path='/active-conversation' element={<ActiveConversation />} />
-      <Route path='/favorites' element={<Favorites />} />
-    </Routes>
-
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/profile-search' element={<ProfileSearch />} />
+        <Route path='/my-profile' element={<MyProfile />} />
+        <Route path='/conversations' element={<Conversations />} />
+        <Route path='/create-account' element={<CreateAccount />} />
+        <Route path='/create-profile' element={<CreateProfile />} />
+        <Route path='/login' element={<Login />} />
+        <Route path='/active-conversation' element={<ActiveConversation />} />
+        <Route path='/favorites' element={<Favorites />} />
+      </Routes>
     </>
 
   )
