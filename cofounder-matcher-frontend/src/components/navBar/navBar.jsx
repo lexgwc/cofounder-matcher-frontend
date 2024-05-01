@@ -2,12 +2,20 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import './navBar.css';
 import { DropdownMenu, Button } from '@radix-ui/themes'
+import { removeToken } from '../../services/tokenServices';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate()
 
     const handleClick = () => {
         setIsOpen(false);
+    }
+
+    const logOut = () => {
+        removeToken()
+        navigate('/login')
     }
 
     return (
@@ -28,9 +36,10 @@ const Navbar = () => {
                         </NavLink>
                     </DropdownMenu.Item>
                 ))}
+                <Button className='logout' onClick={logOut}>Log Out</Button>
             </DropdownMenu.Content>
         </DropdownMenu.Root>
-    );
+    )
 }
 
 
