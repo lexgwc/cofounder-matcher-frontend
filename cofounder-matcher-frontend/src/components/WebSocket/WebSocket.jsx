@@ -3,7 +3,7 @@ import { io } from "socket.io-client";
 
 import "./WebSocket.css"
 
-const socket = io('http://localhost:3000');
+const socket = 'null' //io('http://localhost:3000');
 
 const WebSocket = () => {
   const [message, setMessage] = useState('');

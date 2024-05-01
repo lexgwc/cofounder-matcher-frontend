@@ -25,7 +25,7 @@ const Login = () => {
         throw Error(apiResponse.error)
       }
       setToken(apiResponse.data.accessToken)
-      navigate('/home')
+      navigate('/')
     } catch (error) {
       console.error(error)
     }
