@@ -1,9 +1,24 @@
 import React from 'react'
+import Filters from '../../components/filters/filters.jsx'
+import { NavLink } from 'react-router-dom';
+import logo from '../../../images/logo.png'
+import { Button, Heading, Text, Box} from '@radix-ui/themes'
+import './HomePage.css'
+import SchoolCount from '../../components/SchoolCount/SchoolCount.jsx'
+
 
 const HomePage = () => {
   return (
-    <div>HomePage</div>
-  )
-}
-
+    <Box>
+      {/* <img src={logo} alt="Logo" className="logo" /> */}
+      <Heading>Find the Right Connections</Heading>
+      <Heading>Change The World</Heading>
+      <Button as={NavLink} to='/create-account'>Create an Account</Button>
+      <Text>Already have an account? <NavLink to='/login'>Login</NavLink></Text>
+      <SchoolCount/>
+      <SchoolCount/>
+    </Box>
+  
+ 
+  )}
 export default HomePage
