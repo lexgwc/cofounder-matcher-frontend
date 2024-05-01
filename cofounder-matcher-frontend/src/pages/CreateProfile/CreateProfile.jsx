@@ -12,7 +12,7 @@ const CreateProfile = () => {
     lastName: '',
     birthDate: '',
     currentSchool: '',
-    about: '',
+    aboutMe: '',
     linkedInURL: '',
     email: '',
     schedulingURL: '',
@@ -32,7 +32,7 @@ const CreateProfile = () => {
       if (apiResponse.status !== 200) {
         throw new Error(apiResponse.error);
       }
-      navigate('/login');
+      navigate('/create-profile1');
     } catch (error) {
       console.error(error);
     }
@@ -83,9 +83,9 @@ const CreateProfile = () => {
 
 
         {/* About Me */}
-        <label htmlFor="about">About me:</label>
+        <label htmlFor="aboutMe">About me:</label>
         <br/>
-        <input type="text" id="about" name="about" value={profileData.about} onChange={handleChange}/>
+        <input type="text" id="aboutMe" name="aboutMe" value={profileData.about} onChange={handleChange}/>
         <br/>
 
         {/* Linkedin */}

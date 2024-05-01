@@ -10,6 +10,8 @@ import ProfileSearch from './pages/ProfileSearch/ProfileSearch.jsx'
 import Conversations from './pages/Conversations/Conversations.jsx';
 import CreateAccount from './pages/CreateAccount/CreateAccount.jsx';
 import CreateProfile from './pages/CreateProfile/CreateProfile.jsx';
+import CreateProfile1 from './pages/CreateProfile/CreateProfile.jsx';
+import CreateProfile2 from './pages/CreateProfile/CreateProfile.jsx';
 import Login from './pages/Login/Login.jsx';
 import ActiveConversation from './pages/ActiveConversation/ActiveConversation.jsx';
 import MyProfile from './pages/MyProfile/MyProfile.jsx';
@@ -27,6 +29,8 @@ function App() {
         <Route path='/conversations' element={<Conversations />} />
         <Route path='/create-account' element={<CreateAccount />} />
         <Route path='/create-profile' element={<CreateProfile />} />
+        <Route path='/create-profile1' element={<CreateProfile1 />} />
+        <Route path='/create-profile2' element={<CreateProfile2 />} />
         <Route path='/login' element={<Login />} />
         <Route path='/active-conversation' element={<ActiveConversation />} />
         <Route path='/favorites' element={<Favorites />} />
