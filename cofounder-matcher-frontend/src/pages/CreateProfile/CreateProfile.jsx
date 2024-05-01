@@ -1,12 +1,42 @@
 import React from 'react'
+import { createProfile } from '../../services/apiServices.js'
+import { useState } from 'react'
+import { useNavigate } from 'react-router'
 
 import { Flex, Button, Avatar, Heading, Text, TextField, DropdownMenu, ScrollArea, Progress, Box } from '@radix-ui/themes'
 
 const CreateProfile = () => {
 
+  const [profileData, setProfileData] = useState({
+    firstName: '',
+    lastName: '',
+    birthDate: '',
+    currentSchool: '',
+    about: '',
+    linkedInURL: '',
+    email: '',
+    schedulingURL: '',
+    profilePicture: ''
+  })
+  const navigate = useNavigate()
 
+  const handleChange = (e) => {
+    setProfileData({ ...profileData, [e.target.name]: e.target.value });
+  }
 
-
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(profileData);
+    try {
+      const apiResponse = await createProfile(profileData);
+      if (apiResponse.status !== 200) {
+        throw new Error(apiResponse.error);
+      }
+      navigate('/login');
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
@@ -21,62 +51,63 @@ const CreateProfile = () => {
       <Text>Add a profile picture</Text>
       
       
-      <form action="/editprofile" method="post">
+      <form onSubmit={handleSubmit}>
         
         <br/>
         {/* First Name */}
-        <label for="firstName">First name:</label>
+        <label htmlFor="firstName">First name:</label>
         <br/>
-        <input type="text" id="firstName" name="firstName" />
+        <input type="text" name="firstName" value={profileData.firstName} onChange={handleChange}
+        />
         <br/>
 
         {/* Last Name */}
-        <label for="lastName">Last name:</label>
+        <label htmlFor="lastName">Last name:</label>
         <br/>
-        <input type="text" id="lastName" name="lastName" />
+        <input type="text" id="lastName" name="lastName" value={profileData.lastName} onChange={handleChange}/>
         <br/>
 
         {/* Date of Birth */}
-        <label for="birthdate">Birthdate:</label>
+        <label htmlFor="birthdate">Birthdate:</label>
         <br/>
-        <input type="date" id="birthdate" name="birthdate" />
+        <input type="date" id="birthDate" name="birthDate" value={profileData.birthDate} onChange={handleChange}/>
         <br/>
 
         {/* School */}
-        <label for="currentSchool">School:</label>
+        <label htmlFor="currentSchool">School:</label>
         <br/>
-        <select id="currentSchool" name="currentSchool" >
+        <select id="currentSchool" name="currentSchool" value={profileData.currentSchool} onChange={handleChange}>
         <option value="">Select School</option>
         </select>
         <br/>
 
 
         {/* About Me */}
-        <label for="about">About me:</label>
+        <label htmlFor="about">About me:</label>
         <br/>
-        <input type="text" id="about" name="about" />
+        <input type="text" id="about" name="about" value={profileData.about} onChange={handleChange}/>
         <br/>
 
         {/* Linkedin */}
-        <label for="linkedinURL">LinkedIn URL:</label>
+        <label htmlFor="linkedInURL">LinkedIn URL:</label>
         <br/>
-        <input type="url" id="linkedinURL" name="linkedinURL"/>
+        <input type="string" id="linkedInURL" name="linkedInURL" value={profileData.linkedInURL} onChange={handleChange}/>
         <br/>
 
         {/* Email */}
-        <label for="email">Email:</label>
+        <label htmlFor="email">Email:</label>
         <br/>
-        <input type="string" id="email" name="email"/>
+        <input type="email" id="email" name="email" value={profileData.email} onChange={handleChange}/>
         <br/>
 
         {/* Scheduling URL */}
-        <label for="schedulingURL">Scheduling Link:</label>
+        <label htmlFor="schedulingURL">Scheduling Link:</label>
         <br/>
-        <input type="url" id="schedulingURL" name="schedulingURL"/>
+        <input type="string" id="schedulingURL" name="schedulingURL" value={profileData.schedulingURL} onChange={handleChange}/>
         <br/>
 
         {/*Submit Button*/}
-        <input type="submit" value="Save and Continue"/>
+        <Button type="submit">Save and Continue</Button>
         <br/>
 
       </form>
@@ -85,35 +116,3 @@ const CreateProfile = () => {
 }
 
 export default CreateProfile
-
-
-// Old code using radix:
-
-
-// <Heading>Create Profile</Heading>
-// <Text>Basic Information</Text>
-// <Avatar>Avatar</Avatar>
-// <Text>Add a profile picture</Text>
-// <br/>
-
-// {/* First Name */}
-// <Text>What is your first name?</Text>
-// <TextField.Root placeholder="Full Name">
-// </TextField.Root>
-
-//  {/* Last Name */}
-// <Text>What is your last name?</Text>
-// <TextField.Root placeholder="Full Name">
-// </TextField.Root>
-
-// {/* Date of Birth */}
-// <Text>When is your birthday?</Text>
-// <input type="date"/>
-
-
-// {/* School */}
-// <Text>Where are you currently in school?</Text>
-// <label for="currentSchool">School:</label>
-//         <select id="currentSchool" name="currentSchool" >
-//             <option value="">Select School</option>
-//         </select>
