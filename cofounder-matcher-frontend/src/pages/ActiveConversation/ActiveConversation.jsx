@@ -1,8 +1,11 @@
+import WebSocket from '../../components/WebSocket/WebSocket'
 import React from 'react'
 
 const ActiveConversation = () => {
   return (
-    <div>ActiveConversation</div>
+    <div>ActiveConversation
+      <WebSocket/>
+    </div>
   )
 }
 
