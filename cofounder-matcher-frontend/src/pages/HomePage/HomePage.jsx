@@ -13,7 +13,7 @@ const HomePage = () => {
       {/* <img src={logo} alt="Logo" className="logo" /> */}
       <Heading>Find the Right Connections</Heading>
       <Heading>Change The World</Heading>
-      <Button as={NavLink} to='/create-account'>Create an Account</Button>
+      <Button> <NavLink to='/create-account'>Create an Account</NavLink></Button>
       <Text>Already have an account? <NavLink to='/login'>Login</NavLink></Text>
       <SchoolCount/>
       <SchoolCount/>
