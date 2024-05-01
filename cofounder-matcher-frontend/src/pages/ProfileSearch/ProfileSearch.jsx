@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import Filters from '../../components/filters/filters.jsx';
 
 const ProfileSearch = () => {
   return (
-    <div>ProfileSeach</div>
-  )
-}
+    <>
+      <Filters />
+      <div>ProfileSearch</div>
+    </>
+  );
+};
 
-export default ProfileSearch
+export default ProfileSearch;
