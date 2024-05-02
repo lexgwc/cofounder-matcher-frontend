@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 import './CreateProfile.css'
 
-import { Flex, Button, Heading, Text, Progress, Box, CheckboxGroup, ScrollArea } from '@radix-ui/themes'
+import { Flex, Button, Heading, Text, Progress, Box, CheckboxGroup, ScrollArea, Select, TextField } from '@radix-ui/themes'
 
 const CreateProfile2 = () => {
 
@@ -134,9 +134,9 @@ const CreateProfile2 = () => {
         {/* Connection Interests */}
         <label htmlFor="connectionInterest">What kinds of connections are you looking for on this app?</label>
         <br/>
-        <br/>
-        <input type="text" id="connectionInterest" name="connectionInterest" value={profileData.connectionInterest} onChange={handleChange} placeholder="e.g. I'm looking to meet a technical cofounder for a business venture in the healthcare space"/>
-        <br/>
+        <TextField.Root id="connectionInterest" name="connectionInterest" value={profileData.connectionInterest} onChange={handleChange} placeholder="e.g. I'm looking to meet a technical cofounder for a business venture in the healthcare space">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
 
@@ -144,10 +144,23 @@ const CreateProfile2 = () => {
         <label htmlFor="interestedInBeingACofounder">Are you interested in starting a business or finding a cofounder?</label>
         <br/>
         <br/>
-        <select id="interestedInBeingACofounder" name="interestedInBeingACofounder" value={profileData.interestedInBeingACofounder} onChange={handleChange}>
+        {/* <select id="interestedInBeingACofounder" name="interestedInBeingACofounder" value={profileData.interestedInBeingACofounder} onChange={handleChange}>
           <option value="true">Yes</option>
           <option value="false">No</option>
-        </select>
+        </select> */}
+
+        <>
+        <Select.Root defaultValue="Select Technical Skills">
+          <Select.Trigger />
+          <Select.Content>
+              <Select.Item value="true">Yes</Select.Item>
+              <Select.Item value="false">No</Select.Item>
+          </Select.Content>
+        </Select.Root>
+        </>
+
+
+
         <br/>
 
         {/* Industry Interests */}
