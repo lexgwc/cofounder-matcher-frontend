@@ -2,6 +2,7 @@ import React from 'react'
 import { createProfile, getSchools } from '../../services/apiServices.js'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import './CreateProfile.css'
 
 import { Flex, Button, Heading, Text, Progress, Box } from '@radix-ui/themes'
 
