@@ -19,7 +19,6 @@ const HomePage = () => {
       <Button> <NavLink to='/create-account'>Create an Account </NavLink></Button><br/><br/>
       <Text>Already have an account? <NavLink to='/login'>  Login</NavLink></Text>
       <SchoolCount/>
-      <SchoolCount/>
     </Box>
   
  
