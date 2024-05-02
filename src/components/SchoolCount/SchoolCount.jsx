@@ -1,4 +1,3 @@
-import React from 'react'
 import { Text, Box, Heading } from '@radix-ui/themes'
 import { useState, useEffect } from 'react'
 import { getSchoolById } from '../../services/apiServices'

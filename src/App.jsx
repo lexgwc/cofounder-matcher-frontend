@@ -17,6 +17,7 @@ import ActiveConversation from './pages/ActiveConversation/ActiveConversation.js
 import MyProfile from './pages/MyProfile/MyProfile.jsx';
 import Favorites from './pages/Favorites/Favorites.jsx';
 import Navbar from './components/navBar/navBar.jsx'
+import ProtectedRoutes from './protectedRoutes/ProtectedRoutes.jsx';
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path='/' element={<HomePage />} />
-        <Route path='/profile-search' element={<ProfileSearch />} />
+        <Route path='/profile-search' element={<ProtectedRoutes><ProfileSearch /></ProtectedRoutes>} />
         <Route path='/my-profile' element={<MyProfile />} />
         <Route path='/conversations' element={<Conversations />} />
         <Route path='/create-account' element={<CreateAccount />} />
