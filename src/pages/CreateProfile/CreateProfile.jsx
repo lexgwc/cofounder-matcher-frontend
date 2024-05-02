@@ -13,7 +13,9 @@ const CreateProfile = () => {
     birthDate: '',
     currentSchool: '',
     aboutMe: '',
-    linkedInURL: '',
+    socialMedia: {
+      linkedInURL: '',
+    },
     email: '',
     schedulingURL: '',
     profilePicture: ''
@@ -21,7 +23,10 @@ const CreateProfile = () => {
   const navigate = useNavigate()
 
   const handleChange = (e) => {
-    setProfileData({ ...profileData, [e.target.name]: e.target.value });
+    // if (e.target.name === 'linkedInUrl') {
+    //   setProfileData({...profileData, socialMedia['linkedInUrl']: e.target.value})
+    // }
+    setProfileData({ ...profileData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
