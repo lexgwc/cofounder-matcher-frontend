@@ -1,14 +1,18 @@
-import React, { useEffect } from 'react';
+import React, {  useState, useEffect } from 'react';
 import Filters from '../../components/filters/filters.jsx';
 import { Avatar, Grid, Button, Text, Card } from 
 '@radix-ui/themes';
 import { NavLink } from 'react-router-dom';
-import { useState,  } from 'react';
 import { getUserById } from '../../services/apiServices.js';
 
 
 const ProfileSearch = () => {
   const [profile, setProfile] = useState(null)
+  const [favorites, setFavorites] = useState(() => {
+    const savedFavorites = localStorage.getItem('favorites');
+    return savedFavorites ? JSON.parse(savedFavorites) : [];
+  });
+  
 
   const loadProfile = async () => {
     try {
@@ -16,6 +20,16 @@ const ProfileSearch = () => {
     setProfile(newProfile);
   } catch (error) {
   console.log("Error loading profile", error)  
+    }
+  };
+
+  const addToFavorites = () => {
+    if (profile && !favorites.find(fav => fav.id === profile.id)) {
+      const newFavorites = [...favorites, profile];
+      setFavorites(newFavorites);
+      localStorage.setItem('favorites', JSON.stringify(newFavorites));
+    } else {
+      console.log("No profile to add or profile already exists in favorites.");
     }
   };
 
@@ -38,7 +52,7 @@ useEffect(() => {
           padding: '20px',
           width: '100%'}}>Profile Card
       <br/><br/><Avatar>picture</Avatar>
-      <Button style={{ marginLeft: 'auto' }}>⭐</Button>
+      <Button style={{ marginLeft: 'auto' }}onClick={addToFavorites}>⭐</Button>
       <br/><br/><Text>Profile Name</Text><br/>
         <Text>School</Text>
       </Card>
