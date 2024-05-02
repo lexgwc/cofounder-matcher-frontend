@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { io } from "socket.io-client";
-
 import "./WebSocket.css"
 
 const socket = 'null' //io('http://localhost:3000');
@@ -17,9 +16,9 @@ const WebSocket = () => {
       setUserId(socket.id);
     });
 
-    // everytime we get a new msj from the server then we add to the message list
+    // everytime we get a new msj from the server then we add it to the message list
     socket.on("receive-message", message => {
-      // prevMessages: It is the current state of messages/ didnt want to put messages as well so the it can not cause a problem but prevMessage is the same as messages above
+      // prevMessages: It is the current state of messages
       setMessages(prevMessages => [...prevMessages, message]);
     });
 
@@ -36,17 +35,18 @@ const WebSocket = () => {
     if (message) {
       const newMessage = { text: message, user: userId };
       socket.emit('message', newMessage);
-      setMessages(messages => [...messages, newMessage]);
       setMessage('');
     }
   };
 
   return (
     <div className="app-container">
+      <div className="chat-header">Chat</div>
       <ul className="messages-list">
         {messages.map((msg, index) => (
           <li key={index} className={`message-item ${msg.user === userId ? 'my-message' : 'other-message'}`}>
             {msg.text}
+            <div className="message-timestamp">{msg.timestamp}</div>
           </li>
         ))}
       </ul>
@@ -55,6 +55,7 @@ const WebSocket = () => {
           type="text"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
+          placeholder="Type here..."
           className="send-message-input"
         />
         <button type="submit" className="send-message-button">Send</button>
