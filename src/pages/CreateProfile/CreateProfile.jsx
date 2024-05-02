@@ -17,7 +17,7 @@ const CreateProfile = () => {
     firstName: '',
     lastName: '',
     birthDate: '',
-    currentSchool: '663135ef4475f6285743d7af',
+    currentSchool: '',
     aboutMe: '',
     linkedinUrl: '',
     email: '',
@@ -62,12 +62,12 @@ const CreateProfile = () => {
       formData.append('profilePicture', profileData.profilePicture);
     }
 
-    let object = {};
-    formData.forEach((value, key) => {
-    object[key] = value;
-    });
-    const json = JSON.stringify(object)
-    console.log(json)
+    // let object = {};
+    // formData.forEach((value, key) => {
+    // object[key] = value;
+    // });
+    // const json = JSON.stringify(object)
+    // console.log(json)
 
     try {
       const apiResponse = await createProfile(profileData);
@@ -142,7 +142,7 @@ const CreateProfile = () => {
         <select id="currentSchool" name="currentSchool" value={profileData.currentSchool} onChange={handleChange}>
         <option value="">Select School</option>
         {schools.map(school => (
-              <option key={school.id} value={school.id}>{school.name}</option>
+              <option key={school._id} value={school._id}>{school.name}</option>
             ))}
         </select>
         <br/>
