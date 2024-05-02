@@ -62,12 +62,12 @@ const CreateProfile = () => {
       formData.append('profilePicture', profileData.profilePicture);
     }
 
-    let object = {};
-    formData.forEach((value, key) => {
-    object[key] = value;
-    });
-    const json = JSON.stringify(object)
-    console.log(json)
+    // let object = {};
+    // formData.forEach((value, key) => {
+    // object[key] = value;
+    // });
+    // const json = JSON.stringify(object)
+    // console.log(json)
 
     try {
       const apiResponse = await createProfile(profileData);

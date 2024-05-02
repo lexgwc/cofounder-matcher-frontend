@@ -103,7 +103,11 @@ export const createProfile = async (payload) => {
 }
 
 export const updateProfileById = async (id, payload) => {
-  return await api.put(`/profiles/${id}`, payload)
+  return await api.put(`/profiles/${id}`, payload, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 }
 
 export const deleteProfileById = async (id) => {
