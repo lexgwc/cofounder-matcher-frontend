@@ -11,7 +11,6 @@ const CreateProfile1 = () => {
   const token = sessionStorage.getItem('cofoundermatchersessionkey48484');
   const payload = JSON.parse(atob(token.split('.')[1]));
   const userId = payload.userId;
-  console.log(userId)
 
   const [profileData, setProfileData] = useState({
     previousEducation: '',

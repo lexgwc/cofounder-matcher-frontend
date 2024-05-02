@@ -1,8 +1,210 @@
 import React from 'react'
+import { updateProfileByUserId, getAreasOfResponsibility, getHasIdea, getIndustryInterests } from '../../services/apiServices.js'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router'
+import './CreateProfile.css'
+
+import { Flex, Button, Heading, Text, Progress, Box, CheckboxGroup, ScrollArea } from '@radix-ui/themes'
 
 const CreateProfile2 = () => {
+
+  const token = sessionStorage.getItem('cofoundermatchersessionkey48484');
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  const userId = payload.userId;
+
+  const [profileData, setProfileData] = useState({
+    previousEducation: '',
+    programType: '',
+    employmentHistory: '',
+    technical: '',
+    impressiveAccomplishmnet: '',
+  })
+
+  const [hasIdea, setHasIdea] = useState([])
+  const [industryInterests, setIndustryInterests] = useState([])
+  const [areasOfResponsibility, setAreasOfResponsibility] = useState([])
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Execute all API calls concurrently
+        const [ hasIdea, industryInterests, areasOfResponsibility] = await Promise.all([
+          getHasIdea(),
+          getIndustryInterests(),
+          getAreasOfResponsibility()
+        ]);
+
+        console.log('Idea Response:', hasIdea);
+        console.log('Industry Response:', industryInterests);
+        console.log('Areas Response:', areasOfResponsibility);
+  
+
+        // Check and set hasIdea
+        if (hasIdea && Array.isArray(hasIdea.data)) {
+          setHasIdea(hasIdea.data);
+        } else {
+          console.error('Expected hasIdea.data to be an array, got:', hasIdea.data);
+        }
+
+        // Check and set industry interests
+        if (industryInterests && Array.isArray(industryInterests.data)) {
+          setIndustryInterests(industryInterests.data);
+        } else {
+          console.error('Expected industryInterests.data to be an array, got:', industryInterests.data);
+        }
+
+        // Check and set areas of responsibility
+        if (areasOfResponsibility && Array.isArray(areasOfResponsibility.data)) {
+          setAreasOfResponsibility(areasOfResponsibility.data);
+        } else {
+          console.error('Expected areasOfResponsibility.data to be an array, got:', areasOfResponsibility.data);
+        }
+
+      } catch (error) {
+        console.error('Failed to fetch data:', error);
+      }
+    };
+
+    fetchData();
+  }, [navigate]); 
+
+  const handleChange = (e) => {
+    setProfileData({ ...profileData, [e.target.name]: e.target.value })
+  }
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(profileData);
+
+    const formData = new FormData();
+    Object.keys(profileData).forEach(key => {
+        formData.append(key, profileData[key]);
+      });
+    if (profileData.profilePicture) {
+      formData.append('profilePicture', profileData.profilePicture);
+    }
+
+    // let object = {};
+    // formData.forEach((value, key) => {
+    // object[key] = value;
+    // });
+    // const json = JSON.stringify(object)
+    // console.log(json)
+
+    try {
+      const apiResponse = await updateProfileByUserId(userId, profileData);
+      if (apiResponse.status !== 200) {
+        throw new Error(apiResponse.error);
+      }
+      navigate('/create-profile2');
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   return (
-    <div>CreateProfile2</div>
+    <>
+    <Flex direction="column" 
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh', 
+        width: '100%',
+        textAlign: 'center'
+      }}>
+      <Box display="block" asChild>
+        <>
+          <Heading >Create Profile</Heading>
+          <Box maxWidth="300px">
+            <Progress value={66}/>
+          </Box>
+          <br/>
+          <Text size="5">Interests and Ideas</Text>
+          <br/>
+        </>
+      </Box>
+      
+      
+      <form onSubmit={handleSubmit}>
+        
+        <br/>
+        {/* Connection Interests */}
+        <label htmlFor="connectionInterest">What kinds of connections are you looking for on this app?</label>
+        <br/>
+        <br/>
+        <input type="text" id="connectionInterest" name="connectionInterest" value={profileData.connectionInterest} onChange={handleChange} placeholder="e.g. I'm looking to meet a technical cofounder for a business venture in the healthcare space"/>
+        <br/>
+        <br/>
+
+
+        {/* Interest in Being Cofounder */}
+        <label htmlFor="interestedInBeingACofounder">Are you interested in starting a business or finding a cofounder?</label>
+        <br/>
+        <br/>
+        <select id="interestedInBeingACofounder" name="interestedInBeingACofounder" value={profileData.interestedInBeingACofounder} onChange={handleChange}>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
+        <br/>
+
+        {/* Industry Interests */}
+        <label htmlFor="industryInterests">What industries are you interested in?</label>
+        <br/>
+        <br/>
+        <ScrollArea type="always" scrollbars="vertical" style={{ height: 140 }}>
+          <CheckboxGroup.Root 
+          name="industryInterests"
+          value={profileData.industryInterests}
+          id="checkbox-grid"
+          onValueChange={values => handleChange({ target: { name: 'industryInterests', value: values } })} >
+            {industryInterests.map(industry => (
+              <CheckboxGroup.Item key={industry} value={industry}>
+                {industry}
+              </CheckboxGroup.Item>
+            ))}
+          </CheckboxGroup.Root>
+        </ScrollArea>
+        <br/>
+
+        {/* Areas of Responsibility */}
+        <label htmlFor="areasOfResponsibility">What skills do you have?</label>
+        <br/>
+        <br/>
+          <CheckboxGroup.Root 
+          name="areasOfResponsibility"
+          value={profileData.areasOfResponsibility}
+          id="checkbox-grid"
+          onValueChange={values => handleChange({ target: { name: 'areasOfResponsibility', value: values } })} >
+            {areasOfResponsibility.map(area => (
+              <CheckboxGroup.Item key={area} value={area}>
+                {area}
+              </CheckboxGroup.Item>
+            ))}
+          </CheckboxGroup.Root>
+        <br/>
+
+        {/* HasIdea */}
+        <label htmlFor="hasIdea">Do you have a business idea you want to work on?</label>
+        <br/>
+        <select id="hasIdea" name="hasIdea" value={profileData.hasIdea} onChange={handleChange}>
+        <option value="">Select Idea Status</option>
+          {hasIdea.map(idea => (
+            <option key={idea} value={idea}>{idea}</option>
+          ))}
+        </select>
+        <br/>
+
+
+        {/*Submit Button*/}
+        <Button type="submit">Save and Continue</Button>
+        <br/>
+
+      </form>
+      </Flex>
+    </>
   )
 }
 
