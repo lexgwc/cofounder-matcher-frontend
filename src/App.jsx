@@ -10,8 +10,8 @@ import ProfileSearch from './pages/ProfileSearch/ProfileSearch.jsx'
 import Conversations from './pages/Conversations/Conversations.jsx';
 import CreateAccount from './pages/CreateAccount/CreateAccount.jsx';
 import CreateProfile from './pages/CreateProfile/CreateProfile.jsx';
-import CreateProfile1 from './pages/CreateProfile/CreateProfile.jsx';
-import CreateProfile2 from './pages/CreateProfile/CreateProfile.jsx';
+import CreateProfile1 from './pages/CreateProfile/CreateProfile1.jsx';
+import CreateProfile2 from './pages/CreateProfile/CreateProfile2.jsx';
 import Login from './pages/Login/Login.jsx';
 import ActiveConversation from './pages/ActiveConversation/ActiveConversation.jsx';
 import MyProfile from './pages/MyProfile/MyProfile.jsx';

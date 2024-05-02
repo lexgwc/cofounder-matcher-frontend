@@ -3,21 +3,25 @@ import { createProfile, getSchools } from '../../services/apiServices.js'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
-import { Flex, Button, Avatar, Heading, Text, TextField, DropdownMenu, ScrollArea, Progress, Box } from '@radix-ui/themes'
+import { Flex, Button, Heading, Text, Progress, Box } from '@radix-ui/themes'
 
 const CreateProfile = () => {
 
+  const token = sessionStorage.getItem('cofoundermatchersessionkey48484');
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  const userId = payload.userId;
+  console.log(userId)
+
   const [profileData, setProfileData] = useState({
+    userId: userId,
     firstName: '',
     lastName: '',
     birthDate: '',
-    currentSchool: '',
+    currentSchool: '663135ef4475f6285743d7af',
     aboutMe: '',
-    socialMedia: {
-      linkedInURL: '',
-    },
+    linkedinUrl: '',
     email: '',
-    schedulingURL: '',
+    schedulingUrl: '',
     profilePicture: ''
   })
 
@@ -43,15 +47,28 @@ const CreateProfile = () => {
   }, []);
 
   const handleChange = (e) => {
-    // if (e.target.name === 'linkedInUrl') {
-    //   setProfileData({...profileData, socialMedia['linkedInUrl']: e.target.value})
-    // }
     setProfileData({ ...profileData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(profileData);
+
+    const formData = new FormData();
+    Object.keys(profileData).forEach(key => {
+        formData.append(key, profileData[key]);
+      });
+    if (profileData.profilePicture) {
+      formData.append('profilePicture', profileData.profilePicture);
+    }
+
+    let object = {};
+    formData.forEach((value, key) => {
+    object[key] = value;
+    });
+    const json = JSON.stringify(object)
+    console.log(json)
+
     try {
       const apiResponse = await createProfile(profileData);
       if (apiResponse.status !== 200) {
@@ -93,7 +110,7 @@ const CreateProfile = () => {
           <Text>Add a profile picture</Text>
           <input type="file"  accept="image/*" />
           <br/>
-      </>
+        </>
       </Box>
       
       
@@ -138,9 +155,9 @@ const CreateProfile = () => {
         <br/>
 
         {/* Linkedin */}
-        <label htmlFor="linkedInURL">LinkedIn URL:</label>
+        <label htmlFor="linkedinUrl">LinkedIn URL:</label>
         <br/>
-        <input type="string" id="linkedInURL" name="linkedInURL" value={profileData.linkedInURL} onChange={handleChange}/>
+        <input type="string" id="linkedinUrl" name="linkedinUrl" value={profileData.linkedinUrl} onChange={handleChange}/>
         <br/>
 
         {/* Email */}
@@ -150,9 +167,9 @@ const CreateProfile = () => {
         <br/>
 
         {/* Scheduling URL */}
-        <label htmlFor="schedulingURL">Scheduling Link:</label>
+        <label htmlFor="schedulingUrl">Scheduling Link:</label>
         <br/>
-        <input type="string" id="schedulingURL" name="schedulingURL" value={profileData.schedulingURL} onChange={handleChange}/>
+        <input type="string" id="schedulingUrl" name="schedulingUrl" value={profileData.schedulingUrl} onChange={handleChange}/>
         <br/>
 
         {/*Submit Button*/}
