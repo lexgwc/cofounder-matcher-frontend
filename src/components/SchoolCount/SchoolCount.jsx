@@ -7,15 +7,16 @@ const SchoolCount = () => {
   const [ harvardCount, setHarvardCount ] = useState(0)
   const [ stanfordCount, setStanfordCount ] = useState(0)
 
-  const schoolsArray = [{id: '663135ef4475f6285743d7ae', school: 'Harvard', count: harvardCount}, {id: '663135ef4475f6285743d7af', school: 'Stanford', count: stanfordCount}]
+  const schoolsArray = [{id: '663135ef4475f6285743d7ae', name: 'Harvard', count: harvardCount}, {id: '663135ef4475f6285743d7af', name: 'Stanford', count: stanfordCount}]
 
   const schoolCount = []
 
   useEffect(() => {
-    const getSchoolCounts = async () => {
-      schoolsArray.map((school) => {
-        const schoolObj = getSchoolById(school.id)
-        schoolCount.push(schoolObj.numberOfProfiles)
+    const getSchoolCounts = () => {
+      schoolsArray.map(async (school) => {
+        const schoolObj = await getSchoolById(school.id)
+        console.log(schoolObj)
+        schoolCount.push(schoolObj.data.numberOfProfiles)
       })
     }
     getSchoolCounts()
