@@ -1,5 +1,3 @@
-import React from 'react'
-import Filters from '../../components/filters/filters.jsx'
 import { NavLink } from 'react-router-dom';
 import logo from '../../../images/logo.png'
 import { Button, Heading, Text, Box} from '@radix-ui/themes'
@@ -21,6 +19,5 @@ const HomePage = () => {
       <SchoolCount/>
     </Box>
   
- 
   )}
 export default HomePage

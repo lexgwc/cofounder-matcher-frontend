@@ -60,8 +60,6 @@ useEffect(() => {
       <Button>Skip for now</Button><br/><br/>
       <Button><NavLink to='/conversation'>Message</NavLink></Button>
       </Grid>
-
-
     </>
   );
 };

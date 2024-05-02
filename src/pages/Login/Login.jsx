@@ -1,8 +1,9 @@
 import './Login.css'
-import { useState } from 'react'
-import { login } from '../../services/apiServices.js'
+import { useState, useContext } from 'react'
+import { login, verifyLoggedIn } from '../../services/apiServices.js'
 import { useNavigate } from 'react-router'
 import { setToken } from '../../services/tokenServices.js'
+import { AuthContext } from '../../contexts/AuthContext.jsx'
 
 // Import Radix components
 
@@ -14,6 +15,8 @@ const Login = () => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const navigate = useNavigate()
+  const { setIsUserLoggedIn } = useContext(AuthContext)
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,6 +28,7 @@ const Login = () => {
         throw Error(apiResponse.error)
       }
       setToken(apiResponse.data.accessToken)
+      setIsUserLoggedIn(verifyLoggedIn())
       navigate('/')
     } catch (error) {
       console.error(error)
