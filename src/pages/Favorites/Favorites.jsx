@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Avatar, Grid, Button, Text, Card, Box, Heading } from '@radix-ui/themes';
+import { Avatar, Grid, Text, Card, Box, Heading } from '@radix-ui/themes';
 import logo from '../../../images/logo.png';
 import { NavLink } from 'react-router-dom';
 import { getAllFavoritesByUserId } from '../../services/apiServices.js';
@@ -12,7 +12,7 @@ const Favorites = () => {
 
   useEffect(() => {
     // const userId = 'yourUserId';
-    getAllFavoritesByUserId(userId)
+    getAllFavoritesByUserId()
       .then(response => {
         setFavorites(response.data); 
       })
