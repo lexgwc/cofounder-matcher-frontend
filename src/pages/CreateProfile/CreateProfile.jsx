@@ -1,6 +1,6 @@
 import React from 'react'
-import { createProfile } from '../../services/apiServices.js'
-import { useState } from 'react'
+import { createProfile, getSchools } from '../../services/apiServices.js'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
 import { Flex, Button, Avatar, Heading, Text, TextField, DropdownMenu, ScrollArea, Progress, Box } from '@radix-ui/themes'
@@ -20,7 +20,27 @@ const CreateProfile = () => {
     schedulingURL: '',
     profilePicture: ''
   })
+
+  const [schools, setSchools] = useState([])
   const navigate = useNavigate()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getSchools();
+        console.log("Fetched schools data:", response); // Debug: Check the structure of the returned data
+        if (response && Array.isArray(response.data)) { // Ensure there's a 'data' property and it's an array
+          setSchools(response.data);
+        } else {
+          console.error('Expected response.data to be an array, got:', response.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch schools:', error);
+      }
+    };
+  
+    fetchData();
+  }, []);
 
   const handleChange = (e) => {
     // if (e.target.name === 'linkedInUrl') {
@@ -43,17 +63,38 @@ const CreateProfile = () => {
     }
   }
 
+  const handleFileChange = (e) => {
+    setProfileData({
+      ...profileData,
+      profilePicture: e.target.files[0]
+    });
+  };
+
   return (
     <>
-      <Heading>Create Profile</Heading>
-      <Box maxWidth="300px">
-        <Progress value={33}/>
+    <Flex direction="column" 
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh', 
+        width: '100%',
+        textAlign: 'center'
+      }}>
+      <Box display="block" asChild>
+        <>
+          <Heading >Create Profile</Heading>
+          <Box maxWidth="300px">
+            <Progress value={33}/>
+          </Box>
+          <br/>
+          <Text size="5">Basic Information</Text>
+          <Text>Add a profile picture</Text>
+          <input type="file"  accept="image/*" />
+          <br/>
+      </>
       </Box>
-      <br/>
-      <Text size="5">Basic Information</Text>
-      <input type="file"  accept="image/*" />
-      <br/>
-      <Text>Add a profile picture</Text>
       
       
       <form onSubmit={handleSubmit}>
@@ -83,6 +124,9 @@ const CreateProfile = () => {
         <br/>
         <select id="currentSchool" name="currentSchool" value={profileData.currentSchool} onChange={handleChange}>
         <option value="">Select School</option>
+        {schools.map(school => (
+              <option key={school.id} value={school.id}>{school.name}</option>
+            ))}
         </select>
         <br/>
 
@@ -116,6 +160,7 @@ const CreateProfile = () => {
         <br/>
 
       </form>
+      </Flex>
     </>
   )
 }
