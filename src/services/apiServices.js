@@ -102,6 +102,14 @@ export const createProfile = async (payload) => {
   })
 }
 
+export const updateProfileByUserId = async (userId, payload) => {
+  return await api.put(`/profiles/user-profile/${userId}`, payload, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
 export const updateProfileById = async (id, payload) => {
   return await api.put(`/profiles/${id}`, payload, {
     headers: {
