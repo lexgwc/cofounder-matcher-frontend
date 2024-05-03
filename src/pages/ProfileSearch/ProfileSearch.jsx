@@ -4,7 +4,10 @@ import { Avatar, Grid, Button, Text, Card } from '@radix-ui/themes';
 import { NavLink } from 'react-router-dom';
 import { getProfiles } from '../../services/apiServices.js';
 import ProfileCard from '../../components/profileCard/profileCard.jsx';
-
+import { getSchools } from '../../services/apiServices.js';
+import { getSchoolById } from '../../services/apiServices.js'; 
+import { getProgramTypes } from '../../services/apiServices.js';
+import EditProfile from '../EditProfile/EditProfile.jsx';
 
 
 
@@ -48,12 +51,17 @@ const ProfileSearch = () => {
 
   return (
     <>
+     <box>
        <Filters setFilters={setFilters} />
+      
       <Grid columns={3} rows={4} style={{ gap: '20px', marginBottom: '20px' }}>
         <ProfileCard profile={profile} />
+        <EditProfile profile={profile}/>
         <Button onClick={handleSkip}>Skip for now</Button><br/><br/>
         <Button><NavLink to='/conversation'>Message</NavLink></Button>
       </Grid>
+
+      </box>
     </>
   );
 };
