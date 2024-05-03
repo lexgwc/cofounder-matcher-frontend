@@ -153,17 +153,18 @@ const EditProfile = () => {
       <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'rgba(17,17,17)', width: '100%',paddingTop: 50, paddingBottom: 10 }}>
         <>
           <Heading >Edit Profile</Heading>
+          <br/>
           <Box maxWidth="300px">
             <Progress/>
           </Box>
         </>
       </Box>
       
-    <form onSubmit={handleSubmit} style={{ marginTop: '80px' }}>
+    <form onSubmit={handleSubmit} style={{ marginTop: '100px' }}>
         
         <br/>
         {/* First Name */}
-        <label htmlFor="firstName">First name</label>
+        <Text htmlFor="firstName">First name</Text>
         <br/>
         <TextField.Root id="firstName" name="firstName" value={profileData.firstName} onChange={handleChange} placeholder="First Name">
           <TextField.Slot/>
@@ -171,7 +172,7 @@ const EditProfile = () => {
         <br/>
 
         {/* Last Name */}
-        <label htmlFor="lastName">Last name</label>
+        <Text htmlFor="lastName">Last name</Text>
         <br/>
         <TextField.Root id="lastName" name="lastName" value={profileData.lastName} onChange={handleChange} placeholder="Last Name">
           <TextField.Slot/>
@@ -179,14 +180,14 @@ const EditProfile = () => {
         <br/>
 
         {/* Date of Birth */}
-        <label htmlFor="birthdate">Birthdate</label>
+        <Text htmlFor="birthdate">Birthdate</Text>
         <br/>
         <input type="date" id="birthDate" name="birthDate" value={profileData.birthDate} onChange={handleChange}/>
         <br/>
         <br/>
 
         {/* School */}
-        <label htmlFor="currentSchool">Current school</label>
+        <Text htmlFor="currentSchool">Current school</Text>
         <br/>
         <select id="currentSchool" name="currentSchool" value={profileData.currentSchool} onChange={handleChange}>
         <option value="">Select School</option>
@@ -199,7 +200,7 @@ const EditProfile = () => {
 
 
         {/* About Me */}
-        <label htmlFor="aboutMe">About me</label>
+        <Text htmlFor="aboutMe">About me</Text>
         <br/>
         <TextField.Root id="aboutMe" name="aboutMe" value={profileData.aboutMe} onChange={handleChange} placeholder="Tell us about your background, interests, career, and what you're looking for on this app">
           <TextField.Slot/>
@@ -207,7 +208,7 @@ const EditProfile = () => {
         <br/>
 
         {/* Linkedin */}
-        <label htmlFor="linkedinUrl">LinkedIn URL</label>
+        <Text htmlFor="linkedinUrl">LinkedIn URL</Text>
         <br/>
         <TextField.Root id="linkedinUrl" name="linkedinUrl" value={profileData.linkedinUrl} onChange={handleChange} placeholder="Linkedin URL">
           <TextField.Slot/>
@@ -215,7 +216,7 @@ const EditProfile = () => {
         <br/>
 
         {/* Email */}
-        <label htmlFor="email">Email</label>
+        <Text htmlFor="email">Email</Text>
         <br/>
         <TextField.Root id="email" name="email" value={profileData.email} onChange={handleChange} placeholder="Email">
           <TextField.Slot/>
@@ -223,7 +224,7 @@ const EditProfile = () => {
         <br/>
 
         {/* Scheduling URL */}
-        <label htmlFor="schedulingUrl">Scheduling Link</label>
+        <Text htmlFor="schedulingUrl">Scheduling Link</Text>
         <br/>
         <TextField.Root id="schedulingUrl" name="schedulingUrl" value={profileData.schedulingUrl} onChange={handleChange} placeholder="schedulingUrl">
           <TextField.Slot/>
@@ -231,7 +232,7 @@ const EditProfile = () => {
         <br/>
 
         {/* ProgramType */}
-        <label htmlFor="programType">Current educational program type</label>
+        <Text htmlFor="programType">Current educational program type</Text>
         <br/>
         <select id="programType" name="programType" value={profileData.programType} onChange={handleChange}>
           <option value="">Select Program Type</option>
@@ -243,21 +244,23 @@ const EditProfile = () => {
         <br/>
 
         {/* Previous Education */}
-        <label htmlFor="previousEducation">Education History</label>
+        <Text htmlFor="previousEducation">Education History</Text>
         <br/>
-        <input type="text" id="previousEducation" name="previousEducation" value={profileData.previousEducation} onChange={handleChange}/>
-        <br/>
+        <TextField.Root id="previousEducation" name="previousEducation" value={profileData.previousEducation} onChange={handleChange} placeholder="Previous Education">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
         {/* Employment History */}
-        <label htmlFor="employmentHistory">Employment History</label>
+        <Text htmlFor="employmentHistory">Employment History</Text>
         <br/>
-        <input type="text" id="employmentHistory" name="employmentHistory" value={profileData.employmentHistory} onChange={handleChange}/>
-        <br/>
+        <TextField.Root id="employmentHistory" name="employmentHistory" value={profileData.employmentHistory} onChange={handleChange} placeholder="Employment History">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
         {/* Technical */}
-        <label htmlFor="technical">Are you technical?</label>
+        <Text htmlFor="technical">Are you technical?</Text>
         <br/>
         <select id="technical" name="technical" value={profileData.technical} onChange={handleChange}>
         <option value="true">Yes</option>
@@ -267,14 +270,15 @@ const EditProfile = () => {
         <br/>
 
         {/* Impressive Acomplishment */}
-        <label htmlFor="impressiveAccomplishmnet">Brag About an Impressive Accomplishment</label>
+        <Text htmlFor="impressiveAccomplishmnet">Brag About an Impressive Accomplishment</Text>
         <br/>
-        <input type="text" id="impressiveAccomplishmnet" name="impressiveAccomplishmnet" value={profileData.impressiveAccomplishmnet} onChange={handleChange}/>
-        <br/>
+        <TextField.Root id="impressiveAccomplishmnet" name="impressiveAccomplishmnet" value={profileData.impressiveAccomplishmnet} onChange={handleChange} placeholder="Impressive Accomplishment">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
         {/* Connection Interests */}
-        <label htmlFor="connectionInterest">What kinds of connections are you looking for on this app?</label>
+        <Text htmlFor="connectionInterest">What kinds of connections are you looking for on this app?</Text>
         <br/>
         <TextField.Root id="connectionInterest" name="connectionInterest" value={profileData.connectionInterest} onChange={handleChange} placeholder="e.g. I'm looking to meet a technical cofounder for a business venture in the healthcare space">
           <TextField.Slot/>
@@ -284,7 +288,7 @@ const EditProfile = () => {
 
 
         {/* Interest in Being Cofounder */}
-        <label htmlFor="interestedInBeingACofounder">Are you interested in starting a business or finding a cofounder?</label>
+        <Text htmlFor="interestedInBeingACofounder">Are you interested in starting a business or finding a cofounder?</Text>
         <br/>
         <>
         <Select.Root id="interestedInBeingACofounder" 
@@ -305,7 +309,7 @@ const EditProfile = () => {
         <br/>
 
         {/* Industry Interests */}
-        <label htmlFor="industryInterests">What industries are you interested in?</label>
+        <Text htmlFor="industryInterests">What industries are you interested in?</Text>
         <br/>
         <br/>
         <ScrollArea type="always" scrollbars="vertical" style={{ height: 140 }}>
@@ -324,7 +328,7 @@ const EditProfile = () => {
         <br/>
 
         {/* Areas of Responsibility */}
-        <label htmlFor="areasOfResponsibility">What skills do you have?</label>
+        <Text htmlFor="areasOfResponsibility">What skills do you have?</Text>
         <br/>
         <br/>
           <CheckboxGroup.Root 
@@ -341,7 +345,7 @@ const EditProfile = () => {
         <br/>
 
         {/* HasIdea */}
-        <label htmlFor="hasIdea">Do you have a business idea you want to work on?</label>
+        <Text htmlFor="hasIdea">Do you have a business idea you want to work on?</Text>
         <br/>
         <select id="hasIdea" name="hasIdea" value={profileData.hasIdea} onChange={handleChange}>
         <option value="">Select Idea Status</option>
@@ -353,7 +357,7 @@ const EditProfile = () => {
         <br/>
 
         {/* Potential Ideas */}
-        <label htmlFor="potentialIdeas">If you have any business ideas, what are some you might like to work on?</label>
+        <Text htmlFor="potentialIdeas">If you have any business ideas, what are some you might like to work on?</Text>
         <br/>
         <TextField.Root id="potentialIdeas" name="potentialIdeas" value={profileData.potentialIdeas} onChange={handleChange} placeholder="e.g. I have an idea for a mobile app that helps people find the best local restaurants">
           <TextField.Slot/>
@@ -361,7 +365,7 @@ const EditProfile = () => {
         <br/>
 
         {/* Cofounder Desired Qualities */}
-        <label htmlFor="cofounderDesiredQualities">What qualities are you looking for in a cofounder?</label>
+        <Text htmlFor="cofounderDesiredQualities">What qualities are you looking for in a cofounder?</Text>
         <br/>
         <TextField.Root id="cofounderDesiredQualities" name="cofounderDesiredQualities" value={profileData.cofounderDesiredQualities} onChange={handleChange} placeholder="e.g. I'm looking for someone who is passionate about technology and has experience in marketing">
           <TextField.Slot/>
