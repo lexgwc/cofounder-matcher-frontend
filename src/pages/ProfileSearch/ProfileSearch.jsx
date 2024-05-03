@@ -56,7 +56,7 @@ const ProfileSearch = () => {
       
       <Grid columns={3} rows={4} style={{ gap: '20px', marginBottom: '20px' }}>
         <ProfileCard profile={profile} />
-        <EditProfile profile={profile}/>
+        {/* <EditProfile profile={profile}/> */}
         <Button onClick={handleSkip}>Skip for now</Button><br/><br/>
         <Button><NavLink to='/conversation'>Message</NavLink></Button>
       </Grid>
