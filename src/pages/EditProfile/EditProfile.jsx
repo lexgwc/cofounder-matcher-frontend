@@ -1,18 +1,32 @@
 import React from 'react'
-import { updateProfileByUserId, getAreasOfResponsibility, getHasIdea, getIndustryInterests } from '../../services/apiServices.js'
+import { updateProfileByUserId, getProgramTypes, getSchools, getAreasOfResponsibility, getHasIdea, getIndustryInterests } from '../../services/apiServices.js'
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
-import './CreateProfile.css'
+import './EditProfile.css'
 
-import { Flex, Button, Heading, Text, Progress, Box, CheckboxGroup, ScrollArea, Select, TextField } from '@radix-ui/themes'
+import { Flex, Button, Heading, Text, Progress, TextField, Box, Select, ScrollArea, CheckboxGroup } from '@radix-ui/themes'
 
-const CreateProfile2 = () => {
+const EditProfile = () => {
 
   const token = sessionStorage.getItem('cofoundermatchersessionkey48484');
   const payload = JSON.parse(atob(token.split('.')[1]));
   const userId = payload.userId;
 
   const [profileData, setProfileData] = useState({
+    firstName: '',
+    lastName: '',
+    birthDate: '',
+    currentSchool: '',
+    aboutMe: '',
+    linkedinUrl: '',
+    email: '',
+    schedulingUrl: '',
+    profilePicture: '',
+    previousEducation: '',
+    programType: '',
+    employmentHistory: '',
+    technical: '',
+    impressiveAccomplishmnet: '',
     interestedInBeingACofounder: '',
     connectionInterest: '',
     industryInterests: [],
@@ -26,21 +40,30 @@ const CreateProfile2 = () => {
   const [hasIdea, setHasIdea] = useState([])
   const [industryInterests, setIndustryInterests] = useState([])
   const [areasOfResponsibility, setAreasOfResponsibility] = useState([])
+  const [programTypes, setProgramTypes] = useState([])
+  const [schools, setSchools] = useState([])
   const navigate = useNavigate()
+
+
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         // Execute all API calls concurrently
-        const [ hasIdea, industryInterests, areasOfResponsibility] = await Promise.all([
+        const [ hasIdea, industryInterests, areasOfResponsibility, programTypes, schools] = await Promise.all([
           getHasIdea(),
           getIndustryInterests(),
-          getAreasOfResponsibility()
+          getAreasOfResponsibility(),
+          getProgramTypes(),
+          getSchools()
         ]);
 
         console.log('Idea Response:', hasIdea);
         console.log('Industry Response:', industryInterests);
         console.log('Areas Response:', areasOfResponsibility);
+        console.log('Program Types:', programTypes);
+        console.log('Schools:', schools);
   
 
         // Check and set hasIdea
@@ -62,6 +85,20 @@ const CreateProfile2 = () => {
           setAreasOfResponsibility(areasOfResponsibility.data);
         } else {
           console.error('Expected areasOfResponsibility.data to be an array, got:', areasOfResponsibility.data);
+        }
+
+        // Check and set program types
+        if (programTypes && Array.isArray(programTypes.data)) {
+          setProgramTypes(programTypes.data);
+        } else {
+          console.error('Expected programTypes.data to be an array, got:', programTypes.data);
+        }
+
+        // Check and set schools
+        if (schools && Array.isArray(schools.data)) {
+          setSchools(schools.data);
+        } else {
+          console.error('Expected schools.data to be an array, got:', schools.data);
         }
 
       } catch (error) {
@@ -88,13 +125,6 @@ const CreateProfile2 = () => {
       formData.append('profilePicture', profileData.profilePicture);
     }
 
-    // let object = {};
-    // formData.forEach((value, key) => {
-    // object[key] = value;
-    // });
-    // const json = JSON.stringify(object)
-    // console.log(json)
-
     try {
       const apiResponse = await updateProfileByUserId(userId, profileData);
       if (apiResponse.status !== 200) {
@@ -105,6 +135,9 @@ const CreateProfile2 = () => {
       console.error(error);
     }
   }
+  
+
+
 
   return (
     <>
@@ -113,28 +146,127 @@ const CreateProfile2 = () => {
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'center', 
         width: '100%',
         textAlign: 'center'
       }}>
-      <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'rgba(17,17,17)', width: '100%',paddingTop: 50, paddingBottom: 0 }}>
+      <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'rgba(17,17,17)', width: '100%',paddingTop: 50, paddingBottom: 10 }}>
         <>
-          <Heading >Create Profile</Heading>
-          <br/>
-          <Text size="5">Interests and Ideas</Text>
-          <br/>
-          <br/>
+          <Heading >Edit Profile</Heading>
           <Box maxWidth="300px">
-            <Progress value={100}/>
+            <Progress/>
           </Box>
-          <br/>
         </>
       </Box>
       
-      
-      <form onSubmit={handleSubmit} style={{ marginTop: '150px' }}>
+    <form onSubmit={handleSubmit} style={{ marginTop: '80px' }}>
         
         <br/>
+        {/* First Name */}
+        <label htmlFor="firstName">First name:</label>
+        <br/>
+        <TextField.Root id="firstName" name="firstName" value={profileData.firstName} onChange={handleChange} placeholder="First Name">
+          <TextField.Slot/>
+        </TextField.Root>
+        <br/>
+
+        {/* Last Name */}
+        <label htmlFor="lastName">Last name:</label>
+        <br/>
+        <TextField.Root id="lastName" name="lastName" value={profileData.lastName} onChange={handleChange} placeholder="Last Name">
+          <TextField.Slot/>
+        </TextField.Root>
+        <br/>
+
+        {/* Date of Birth */}
+        <label htmlFor="birthdate">Birthdate:</label>
+        <br/>
+        <input type="date" id="birthDate" name="birthDate" value={profileData.birthDate} onChange={handleChange}/>
+        <br/>
+
+        {/* School */}
+        <label htmlFor="currentSchool">School:</label>
+        <br/>
+        <select id="currentSchool" name="currentSchool" value={profileData.currentSchool} onChange={handleChange}>
+        <option value="">Select School</option>
+        {schools.map(school => (
+              <option key={school._id} value={school._id}>{school.name}</option>
+            ))}
+        </select>
+        <br/>
+
+
+        {/* About Me */}
+        <label htmlFor="aboutMe">About me:</label>
+        <br/>
+        <TextField.Root id="aboutMe" name="aboutMe" value={profileData.aboutMe} onChange={handleChange} placeholder="Tell us about your background, interests, career, and what you're looking for on this app">
+          <TextField.Slot/>
+        </TextField.Root>
+        <br/>
+
+        {/* Linkedin */}
+        <label htmlFor="linkedinUrl">What's your LinkedIn URL?</label>
+        <br/>
+        <TextField.Root id="linkedinUrl" name="linkedinUrl" value={profileData.linkedinUrl} onChange={handleChange} placeholder="Linkedin URL">
+          <TextField.Slot/>
+        </TextField.Root>
+        <br/>
+
+        {/* Email */}
+        <label htmlFor="email">Email:</label>
+        <br/>
+        <TextField.Root id="email" name="email" value={profileData.email} onChange={handleChange} placeholder="Email">
+          <TextField.Slot/>
+        </TextField.Root>
+        <br/>
+
+        {/* Scheduling URL */}
+        <label htmlFor="schedulingUrl">Scheduling Link:</label>
+        <br/>
+        <TextField.Root id="schedulingUrl" name="schedulingUrl" value={profileData.schedulingUrl} onChange={handleChange} placeholder="schedulingUrl">
+          <TextField.Slot/>
+        </TextField.Root>
+        <br/>
+
+        <br/>
+        {/* ProgramType */}
+        <label htmlFor="programType">What type of program are you currently in?</label>
+        <br/>
+        <select id="programType" name="programType" value={profileData.programType} onChange={handleChange}>
+          <option value="">Select Program Type</option>
+          {programTypes.map(programType => (
+            <option key={programType} value={programType}>{programType}</option>
+          ))}
+        </select>
+        <br/>
+
+        {/* Previous Education */}
+        <label htmlFor="previousEducation">Education History:</label>
+        <br/>
+        <input type="text" id="previousEducation" name="previousEducation" value={profileData.previousEducation} onChange={handleChange}/>
+        <br/>
+
+        {/* Employment History */}
+        <label htmlFor="employmentHistory">Employment History:</label>
+        <br/>
+        <input type="text" id="employmentHistory" name="employmentHistory" value={profileData.employmentHistory} onChange={handleChange}/>
+        <br/>
+
+        {/* Technical */}
+        <label htmlFor="technical">Are you technical?</label>
+        <br/>
+        <select id="technical" name="technical" value={profileData.technical} onChange={handleChange}>
+        <option value="true">Yes</option>
+        <option value="false">No</option>
+        </select>
+        <br/>
+
+        {/* Impressive Acomplishment */}
+        <label htmlFor="impressiveAccomplishmnet">Brag About an Impressive Accomplishment:</label>
+        <br/>
+        <input type="text" id="impressiveAccomplishmnet" name="impressiveAccomplishmnet" value={profileData.impressiveAccomplishmnet} onChange={handleChange}/>
+        <br/>
+
         {/* Connection Interests */}
         <label htmlFor="connectionInterest">What kinds of connections are you looking for on this app?</label>
         <br/>
@@ -229,15 +361,14 @@ const CreateProfile2 = () => {
         </TextField.Root>
         <br/>
 
-
         {/*Submit Button*/}
-        <Button type="submit">Save and Continue</Button>
-        <br/>
+        <Button type="submit">Save</Button>
 
-      </form>
-      </Flex>
+    </form>
+    </Flex>
+
     </>
-  )
+  );
 }
 
-export default CreateProfile2
+export default EditProfile

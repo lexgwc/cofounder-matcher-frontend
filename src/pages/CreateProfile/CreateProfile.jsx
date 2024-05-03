@@ -95,26 +95,29 @@ const CreateProfile = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh', 
         width: '100%',
         textAlign: 'center'
       }}>
-      <Box display="block" asChild>
+      <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'rgba(17,17,17)', width: '100%',paddingTop: 50, paddingBottom: 0 }}>
         <>
           <Heading >Create Profile</Heading>
+          <br/>
+          <Text size="5">Basic Information</Text>
+          <br/>
           <Box maxWidth="300px">
             <Progress value={33}/>
           </Box>
-          <br/>
-          <Text size="5">Basic Information</Text>
-          <Text>Add a profile picture</Text>
-          <input type="file"  accept="image/*" />
           <br/>
         </>
       </Box>
       
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ marginTop: '180px' }}>
+        
+        {/* Profile Picture */}
+        <Text>Add a profile picture</Text>
+          <input type="file"  accept="image/*" />
+          <br/>
         
         <br/>
         {/* First Name */}

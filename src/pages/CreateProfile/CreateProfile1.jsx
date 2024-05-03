@@ -83,24 +83,25 @@ const CreateProfile1 = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh', 
         width: '100%',
         textAlign: 'center'
       }}>
-      <Box display="block" asChild>
+      <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'rgba(17,17,17)', width: '100%',paddingTop: 50, paddingBottom: 0 }}>
         <>
           <Heading >Create Profile</Heading>
+          <br/>
+          <Text size="5">Education and Experience</Text>
+          <br/>
+          <br/>
           <Box maxWidth="300px">
             <Progress value={66}/>
           </Box>
-          <br/>
-          <Text size="5">Education and Experience</Text>
           <br/>
         </>
       </Box>
       
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ marginTop: '180px' }}>
         
         <br/>
         {/* ProgramType */}
