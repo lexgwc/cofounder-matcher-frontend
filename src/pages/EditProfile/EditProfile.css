@@ -8,7 +8,7 @@ form {
   width: 70%
 }
 
-input {
+input [type="date"] [type="file"] {
   background-color: rgba(13, 13, 13);
   border-radius: 5px;
   padding: 7px;
