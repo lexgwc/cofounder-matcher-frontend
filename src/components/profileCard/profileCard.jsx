@@ -21,6 +21,7 @@ const ProfileCard = ({ profile }) => {
   }
 
   return (
+    <box>
     <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', margin: '15px', padding: '20px', width: '100%' }}>
       Profile Card
       <br/><br/>
@@ -32,6 +33,8 @@ const ProfileCard = ({ profile }) => {
       <Text>{profile.programType}</Text>
       <Text>{profile.connectionInterest}</Text>
     </Card>
+    <></>
+    </box>
   )
 }
 
