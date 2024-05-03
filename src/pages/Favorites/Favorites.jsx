@@ -3,6 +3,7 @@ import { Avatar, Grid, Text, Card, Box, Heading } from '@radix-ui/themes';
 import logo from '../../../images/logo.png';
 import { getFavorites } from '../../services/apiServices.js';  // 
 import ProfileCard from '../../components/profileCard/profileCard.jsx';
+import { profile } from '../../data.js';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
