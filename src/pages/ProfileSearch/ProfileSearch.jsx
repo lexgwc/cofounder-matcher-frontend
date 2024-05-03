@@ -56,7 +56,11 @@ const ProfileSearch = () => {
         <Filters setFilters={setFilters} />
       
       <Grid columns={3} rows={4} style={{ gap: '20px', marginBottom: '20px' }}>
+<<<<<<< HEAD
         <ProfileCard profile={profileArray[profileIndex]} />
+=======
+        <ProfileCard profile={profile} />
+>>>>>>> 0c99f503e98fd3f41423ec733e092ba10f92f396
         <Button onClick={handleSkip}>Skip for now</Button><br/><br/>
         <Button><NavLink to='/conversation'>Message</NavLink></Button>
       </Grid>
