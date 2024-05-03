@@ -58,12 +58,6 @@ const EditProfile = () => {
           getProgramTypes(),
           getSchools()
         ]);
-
-        console.log('Idea Response:', hasIdea);
-        console.log('Industry Response:', industryInterests);
-        console.log('Areas Response:', areasOfResponsibility);
-        console.log('Program Types:', programTypes);
-        console.log('Schools:', schools);
   
 
         // Check and set hasIdea
@@ -130,7 +124,7 @@ const EditProfile = () => {
       if (apiResponse.status !== 200) {
         throw new Error(apiResponse.error);
       }
-      navigate('/profile-search');
+      navigate('/my-profile');
     } catch (error) {
       console.error(error);
     }
