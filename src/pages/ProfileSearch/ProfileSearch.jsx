@@ -5,21 +5,34 @@ import { NavLink } from 'react-router-dom';
 import { getProfiles } from '../../services/apiServices.js';
 import ProfileCard from '../../components/profileCard/profileCard.jsx';
 
+
+
+
 const ProfileSearch = () => {
+  const [filters, setFilters] = useState({currentSchool: '', program:'', technical: false});
   const [profile, setProfile] = useState({});
   const [profileArray, setProfileArray] = useState([]);
   const [profileIndex, setProfileIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchProfiles() {
-      const profiles = await getProfiles();
+      setLoading(true);
+      console.log('Filtros aplicados:', filters);
+      const profiles = await getProfiles(filters);
       if (profiles && profiles.data && profiles.data.length > 0) {
         setProfileArray(profiles.data);
+        setProfile(profiles.data[0]);
+        setProfileIndex(0);
         console.log(profileArray)
+      } else {
+        setProfileArray([]); 
+      setProfile(null);
       }
+      setLoading(false); 
     }
     fetchProfiles();
-  }, []);
+  }, [filters]);
 
   useEffect(() => {
     if (profileArray.length > 0 && profileIndex < profileArray.length) {
@@ -35,7 +48,7 @@ const ProfileSearch = () => {
 
   return (
     <>
-      <Filters />
+       <Filters setFilters={setFilters} />
       <Grid columns={3} rows={4} style={{ gap: '20px', marginBottom: '20px' }}>
         <ProfileCard profile={profile} />
         <Button onClick={handleSkip}>Skip for now</Button><br/><br/>
@@ -46,3 +59,21 @@ const ProfileSearch = () => {
 };
 
 export default ProfileSearch;
+
+
+// const filtersObj = {
+//   currentSchool: '',
+//   programTypes: '',
+//   technical: null
+// }
+
+// const query = {}
+
+// const filtersToSend = Object.entries(filtersObj).map(([key, value]) => {
+//   if (value) {
+//     query.key = value
+//   }
+//   return null;
+// })
+
+// query = { currentSchool: 'Harvard' }
