@@ -24,6 +24,34 @@
 
 .message-item {
   padding: 10px;
+  margin: 5px 0;
+  border-radius: 10px;
+  max-width: 60%;
+}
+
+
+.my-message {
+  color: white; 
+  background-color: #4CAF50; 
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: right;
+}
+
+.other-message {
+  color: white; 
+  background-color: #a00c0c; 
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+
+.send-message-form {
+  display: flex;
+  margin-top: 20px;
   margin: 5px 10px;
   border-radius: 10px;
   max-width: 60%;
@@ -59,7 +87,10 @@
   border: none;
   border-radius: 20px;
   background: lightgray;
-  
+  margin-right: 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 20px;
 }
 
 .send-message-button {

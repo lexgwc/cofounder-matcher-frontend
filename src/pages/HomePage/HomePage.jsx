@@ -1,5 +1,3 @@
-import React from 'react'
-import Filters from '../../components/filters/filters.jsx'
 import { NavLink } from 'react-router-dom';
 import logo from '../../../images/logo.png'
 import { Button, Heading, Text, Box} from '@radix-ui/themes'
@@ -19,9 +17,7 @@ const HomePage = () => {
       <Button> <NavLink to='/create-account'>Create an Account </NavLink></Button><br/><br/>
       <Text>Already have an account? <NavLink to='/login'>  Login</NavLink></Text>
       <SchoolCount/>
-      <SchoolCount/>
     </Box>
   
- 
   )}
 export default HomePage

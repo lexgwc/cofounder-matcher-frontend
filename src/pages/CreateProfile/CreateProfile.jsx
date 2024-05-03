@@ -1,37 +1,74 @@
 import React from 'react'
-import { createProfile } from '../../services/apiServices.js'
-import { useState } from 'react'
+import { createProfile, getSchools } from '../../services/apiServices.js'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router'
+import './CreateProfile.css'
 
-import { Flex, Button, Avatar, Heading, Text, TextField, DropdownMenu, ScrollArea, Progress, Box } from '@radix-ui/themes'
+import { Flex, Button, Heading, Text, Progress, Box, TextField } from '@radix-ui/themes'
 
 const CreateProfile = () => {
 
+  const token = sessionStorage.getItem('cofoundermatchersessionkey48484');
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  const userId = payload.userId;
+  
   const [profileData, setProfileData] = useState({
+    userId: userId,
     firstName: '',
     lastName: '',
     birthDate: '',
     currentSchool: '',
     aboutMe: '',
-    socialMedia: {
-      linkedInURL: '',
-    },
+    linkedinUrl: '',
     email: '',
-    schedulingURL: '',
+    schedulingUrl: '',
     profilePicture: ''
   })
+
+  const [schools, setSchools] = useState([])
   const navigate = useNavigate()
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await getSchools();
+        console.log("Fetched schools data:", response); // Debug: Check the structure of the returned data
+        if (response && Array.isArray(response.data)) { // Ensure there's a 'data' property and it's an array
+          setSchools(response.data);
+        } else {
+          console.error('Expected response.data to be an array, got:', response.data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch schools:', error);
+      }
+    };
+  
+    fetchData();
+  }, []);
+
   const handleChange = (e) => {
-    // if (e.target.name === 'linkedInUrl') {
-    //   setProfileData({...profileData, socialMedia['linkedInUrl']: e.target.value})
-    // }
     setProfileData({ ...profileData, [e.target.name]: e.target.value })
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(profileData);
+
+    const formData = new FormData();
+    Object.keys(profileData).forEach(key => {
+        formData.append(key, profileData[key]);
+      });
+    if (profileData.profilePicture) {
+      formData.append('profilePicture', profileData.profilePicture);
+    }
+
+    // let object = {};
+    // formData.forEach((value, key) => {
+    // object[key] = value;
+    // });
+    // const json = JSON.stringify(object)
+    // console.log(json)
+
     try {
       const apiResponse = await createProfile(profileData);
       if (apiResponse.status !== 200) {
@@ -43,33 +80,60 @@ const CreateProfile = () => {
     }
   }
 
+  const handleFileChange = (e) => {
+    setProfileData({
+      ...profileData,
+      profilePicture: e.target.files[0]
+    });
+  };
+
   return (
     <>
-      <Heading>Create Profile</Heading>
-      <Box maxWidth="300px">
-        <Progress value={33}/>
+    <Flex direction="column" 
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        textAlign: 'center'
+      }}>
+      <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'rgba(17,17,17)', width: '100%',paddingTop: 50, paddingBottom: 0 }}>
+        <>
+          <Heading >Create Profile</Heading>
+          <br/>
+          <Text size="5">Basic Information</Text>
+          <br/>
+          <Box maxWidth="300px">
+            <Progress value={33}/>
+          </Box>
+          <br/>
+        </>
       </Box>
-      <br/>
-      <Text size="5">Basic Information</Text>
-      <input type="file"  accept="image/*" />
-      <br/>
-      <Text>Add a profile picture</Text>
       
       
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={{ marginTop: '180px' }}>
+        
+        {/* Profile Picture */}
+        <Text>Add a profile picture</Text>
+          <input type="file"  accept="image/*" />
+          <br/>
         
         <br/>
         {/* First Name */}
         <label htmlFor="firstName">First name:</label>
         <br/>
-        <input type="text" name="firstName" value={profileData.firstName} onChange={handleChange}
-        />
+        <TextField.Root id="firstName" name="firstName" value={profileData.firstName} onChange={handleChange} placeholder="First Name">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
         {/* Last Name */}
         <label htmlFor="lastName">Last name:</label>
         <br/>
-        <input type="text" id="lastName" name="lastName" value={profileData.lastName} onChange={handleChange}/>
+        <TextField.Root id="lastName" name="lastName" value={profileData.lastName} onChange={handleChange} placeholder="Last Name">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
         {/* Date of Birth */}
@@ -83,6 +147,9 @@ const CreateProfile = () => {
         <br/>
         <select id="currentSchool" name="currentSchool" value={profileData.currentSchool} onChange={handleChange}>
         <option value="">Select School</option>
+        {schools.map(school => (
+              <option key={school._id} value={school._id}>{school.name}</option>
+            ))}
         </select>
         <br/>
 
@@ -90,25 +157,33 @@ const CreateProfile = () => {
         {/* About Me */}
         <label htmlFor="aboutMe">About me:</label>
         <br/>
-        <input type="text" id="aboutMe" name="aboutMe" value={profileData.about} onChange={handleChange}/>
+        <TextField.Root id="aboutMe" name="aboutMe" value={profileData.aboutMe} onChange={handleChange} placeholder="Tell us about your background, interests, career, and what you're looking for on this app">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
         {/* Linkedin */}
-        <label htmlFor="linkedInURL">LinkedIn URL:</label>
+        <label htmlFor="linkedinUrl">What's your LinkedIn URL?</label>
         <br/>
-        <input type="string" id="linkedInURL" name="linkedInURL" value={profileData.linkedInURL} onChange={handleChange}/>
+        <TextField.Root id="linkedinUrl" name="linkedinUrl" value={profileData.linkedinUrl} onChange={handleChange} placeholder="Linkedin URL">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
         {/* Email */}
         <label htmlFor="email">Email:</label>
         <br/>
-        <input type="email" id="email" name="email" value={profileData.email} onChange={handleChange}/>
+        <TextField.Root id="email" name="email" value={profileData.email} onChange={handleChange} placeholder="Email">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
         {/* Scheduling URL */}
-        <label htmlFor="schedulingURL">Scheduling Link:</label>
+        <label htmlFor="schedulingUrl">Scheduling Link:</label>
         <br/>
-        <input type="string" id="schedulingURL" name="schedulingURL" value={profileData.schedulingURL} onChange={handleChange}/>
+        <TextField.Root id="schedulingUrl" name="schedulingUrl" value={profileData.schedulingUrl} onChange={handleChange} placeholder="schedulingUrl">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
         {/*Submit Button*/}
@@ -116,6 +191,7 @@ const CreateProfile = () => {
         <br/>
 
       </form>
+      </Flex>
     </>
   )
 }

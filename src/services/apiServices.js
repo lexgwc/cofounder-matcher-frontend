@@ -95,11 +95,27 @@ export const getProfileById = async (id) => {
 }
 
 export const createProfile = async (payload) => {
-  return await api.post('/profiles/', payload)
+  return await api.post('/profiles/', payload, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+}
+
+export const updateProfileByUserId = async (userId, payload) => {
+  return await api.put(`/profiles/user-profile/${userId}`, payload, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 }
 
 export const updateProfileById = async (id, payload) => {
-  return await api.put(`/profiles/${id}`, payload)
+  return await api.put(`/profiles/${id}`, payload, {
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 }
 
 export const deleteProfileById = async (id) => {
@@ -152,4 +168,22 @@ export const updateFavoriteById = async (id, payload) => {
 
 export const deleteFavoriteById = async (id) => {
   return await api.delete(`/favorites/${id}`)
+}
+
+// Profile Helpers - API Calss
+
+export const getProgramTypes = async () => {
+  return await api.get('/profile-list-vals/program-type')
+}
+
+export const getHasIdea = async () => {
+  return await api.get('/profile-list-vals/has-idea')
+}
+
+export const getAreasOfResponsibility = async () => {
+  return await api.get('/profile-list-vals/areas-of-responsibility')
+}
+
+export const getIndustryInterests = async () => {
+  return await api.get('/profile-list-vals/industry-interests')
 }

@@ -1,36 +1,36 @@
-import React from 'react'
 import { Text, Box, Heading } from '@radix-ui/themes'
 import { useState, useEffect } from 'react'
 import { getSchoolById } from '../../services/apiServices'
 
 const SchoolCount = () => {
-  const [ harvardCount, setHarvardCount ] = useState(0)
-  const [ stanfordCount, setStanfordCount ] = useState(0)
+  const [ schoolCounts, setSchoolCounts ] = useState({
+    Harvard: 0,
+    Stanford: 0
+  })
 
-  const schoolsArray = [{id: '663135ef4475f6285743d7ae', name: 'Harvard', count: harvardCount}, {id: '663135ef4475f6285743d7af', name: 'Stanford', count: stanfordCount}]
-
-  const schoolCount = []
+  const schoolsArray = [{id: '663135ef4475f6285743d7ae', name: 'Harvard'}, {id: '663135ef4475f6285743d7af', name: 'Stanford'}]
 
   useEffect(() => {
-    const getSchoolCounts = () => {
-      schoolsArray.map(async (school) => {
+    const getSchoolCounts = async () => {
+      let newCounts = {}
+      for (let school of schoolsArray) {
         const schoolObj = await getSchoolById(school.id)
         console.log(schoolObj)
-        schoolCount.push(schoolObj.data.numberOfProfiles)
-      })
+        newCounts[school.name] = schoolObj.data.numberOfProfiles
+      }
+      setSchoolCounts(newCounts)
     }
     getSchoolCounts()
-    setHarvardCount(schoolCount[0])
-    setStanfordCount(schoolCount[1])
   },[])
 
 
   return (
     <>
+      {console.log(schoolsArray)}
       {schoolsArray.map((school,index) => (
         <Box key={index}>
-          <Heading>{school.count}</Heading>
-          <Text>{school.school}</Text>
+          <Heading>{schoolCounts[school.name]}</Heading>
+          <Text>{school.name}</Text>
         </Box>  
       ))}
     </>
