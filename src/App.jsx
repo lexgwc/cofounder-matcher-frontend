@@ -35,7 +35,7 @@ function App() {
         <Route path='/create-profile2' element={<CreateProfile2 />} />
         <Route path='/edit-profile' element={<EditProfile />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/active-conversation' element={<ActiveConversation />} />
+        <Route path='/conversations/:conversationId' element={<ActiveConversation />} />
         <Route path='/favorites' element={<Favorites />} />
       </Routes>
     </>
