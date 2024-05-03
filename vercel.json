@@ -7,7 +7,7 @@
     {
       "source": "/(.*)",
       "destination": "/index.html",
-      "has": [{ "type": "request_method", "value": "GET" }]
+      "has": [{ "type": "host", "value": "GET" }]
     }
   ],
   "routes": [
