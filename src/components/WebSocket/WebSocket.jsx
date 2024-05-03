@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { userId } from "../../helpers/index"
 
 
-const socket = io('http://localhost:3001');
+const socket = io(import.meta.env.VITE_API_URL);
 
 const WebSocket = ({ messages, setMessages, receiverId }) => {
   const { conversationId } = useParams()
