@@ -17,7 +17,9 @@ const CreateProfile2 = () => {
     connectionInterest: '',
     industryInterests: [],
     areasOfResponsibility: [],
-    hasIdea: ''
+    hasIdea: '',
+    potentialIdeas: '',
+    cofounderDesiredQualities: ''
 
   })
 
@@ -144,12 +146,6 @@ const CreateProfile2 = () => {
         {/* Interest in Being Cofounder */}
         <label htmlFor="interestedInBeingACofounder">Are you interested in starting a business or finding a cofounder?</label>
         <br/>
-        <br/>
-        {/* <select id="interestedInBeingACofounder" name="interestedInBeingACofounder" value={profileData.interestedInBeingACofounder} onChange={handleChange}>
-          <option value="true">Yes</option>
-          <option value="false">No</option>
-        </select> */}
-
         <>
         <Select.Root id="interestedInBeingACofounder" 
         name="interestedInBeingACofounder" 
@@ -162,6 +158,7 @@ const CreateProfile2 = () => {
           </Select.Content>
         </Select.Root>
         </>
+        <br/>
 
 
 
@@ -212,6 +209,23 @@ const CreateProfile2 = () => {
             <option key={idea} value={idea}>{idea}</option>
           ))}
         </select>
+        <br/>
+        <br/>
+
+        {/* Potential Ideas */}
+        <label htmlFor="potentialIdeas">If you have any business ideas, what are some you might like to work on?</label>
+        <br/>
+        <TextField.Root id="potentialIdeas" name="potentialIdeas" value={profileData.potentialIdeas} onChange={handleChange} placeholder="e.g. I have an idea for a mobile app that helps people find the best local restaurants">
+          <TextField.Slot/>
+        </TextField.Root>
+        <br/>
+
+        {/* Cofounder Desired Qualities */}
+        <label htmlFor="cofounderDesiredQualities">What qualities are you looking for in a cofounder?</label>
+        <br/>
+        <TextField.Root id="cofounderDesiredQualities" name="cofounderDesiredQualities" value={profileData.cofounderDesiredQualities} onChange={handleChange} placeholder="e.g. I'm looking for someone who is passionate about technology and has experience in marketing">
+          <TextField.Slot/>
+        </TextField.Root>
         <br/>
 
 
