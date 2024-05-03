@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getProfileByUserId } from '../../services/apiServices';
-import { Box, Button, Heading, Card, Flex } from '@radix-ui/themes'
+import { Box, Button, Heading, Card, Flex, Text } from '@radix-ui/themes'
+import './MyProfile.css'
 
 const MyProfile = () => {
   const [profile, setProfile] = useState(null);
@@ -62,99 +63,110 @@ const MyProfile = () => {
         textAlign: 'center'
       }}>
         <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'rgba(17,17,17)', width: '100%',paddingTop: 50, paddingBottom: 0 }}>
-        <>
-          <Heading>Profile Details</Heading>
-          <br/>
-        </>
-      </Box>
-      
-        <Card style={{ justifyContent: 'center', textAlign: 'center', width: '90%', paddingTop: 20, paddingBottom: 30, marginTop: 100 }}>
+          <>
+            <Heading>Profile Details</Heading>
+            <br/>
+          </>
+        </Box>
+        
+      {/* Basic Information */}
+        <Card style={{ justifyContent: 'center', textAlign: 'center', width: '90%', paddingTop: 20, paddingBottom: 10, marginTop: 100 }}>
+            <Heading size="4">Basic Information</Heading>
+            <br/>
+            <Box>
+              <strong>Profile Picture:</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.profilePicture ? <img src={profile.profilePicture} alt="Profile" style={{ width: 100, height: 100 }} /> : 'No image'}</Text>
+            </Box>
+            <Box>
+              <strong>Name</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.fullName || `${profile.firstName} ${profile.lastName}`}</Text>
+            </Box>
+            <Box>
+              <strong>Birth Date:</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.birthDate ? new Date(profile.birthDate).toLocaleDateString() : 'Not provided'}</Text>
+            </Box>
+            <Box>
+              <strong>Email</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.email}</Text>
+            </Box>
+            <Box>
+              <strong>About Me</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.aboutMe || 'Not provided'}</Text>
+            </Box>
+            <Box>
+              <strong>LinkedIn URL</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.linkedinUrl ? <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer">View LinkedIn</a> : 'No LinkedIn profile'}</Text>
+            </Box>
+            <Box>
+              <strong>Scheduling URL</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.schedulingUrl ? <a href={profile.schedulingUrl} target="_blank" rel="noopener noreferrer">Schedule a meeting</a> : 'Not available'}</Text>
+            </Box>
+        </Card>
+
+
+        <Card style={{ justifyContent: 'center', textAlign: 'center', width: '90%', paddingTop: 20, paddingBottom: 10, marginTop: 20 }}>
+            <Heading size="4">Education and Experience</Heading>
+            <br/>
+            <Box>
+              <strong>Current School</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.currentSchool || 'Not provided'}</Text>
+            </Box>
+            <Box>
+              <strong>Current Program Type</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.programType || 'Not specified'}</Text>
+            </Box>
+            <Box>
+              <strong>Technical</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.technical ? 'Yes' : 'No'}</Text>
+            </Box>
+            <Box>
+              <strong>Previous Education</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.previousEducation || 'Not specified'}</Text>
+            </Box>
+            <Box>
+              <strong>Employment History</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.employmentHistory || 'Not provided'}</Text>
+            </Box>
+            <Box>
+              <strong>Impressive Accomplishment</strong>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.impressiveAccomplishment || 'Not provided'}</Text>
+            </Box>
+        </Card>
+
+        <Card style={{ justifyContent: 'center', textAlign: 'center', width: '90%', paddingTop: 20, paddingBottom: 10, marginTop: 20, marginBottom: 20 }}>
+        <Heading size="4">Interests and Ideas</Heading>
+            <br/>
         <Box>
-          <strong>Name:</strong>
-          <p>{profile.fullName || `${profile.firstName} ${profile.lastName}`}</p>
+          <strong>Who I'm Interested in Connecting With</strong>
+          <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.connectionInterest || 'Not specified'}</Text>
         </Box>
         <Box>
-          <strong>Email:</strong>
-          <p>{profile.email}</p>
+          <strong>Industry Interests</strong>
+          <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.industryInterests?.join(', ') || 'None'}</Text>
         </Box>
         <Box>
-          <strong>Last Seen:</strong>
-          <p>{profile.lastSeen ? new Date(profile.lastSeen).toLocaleString() : 'Unknown'}</p>
+          <strong>Interested in Being a Cofounder</strong>
+          <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.interestedInBeingACofounder ? 'Yes' : 'No'}</Text>
         </Box>
         <Box>
-          <strong>About Me:</strong>
-          <p>{profile.aboutMe || 'Not provided'}</p>
+          <strong>Business Idea</strong>
+          <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.hasIdea || 'Not specified'}</Text>
         </Box>
         <Box>
-          <strong>Connection Interest:</strong>
-          <p>{profile.connectionInterest || 'Not specified'}</p>
+          <strong>Potential Ideas</strong>
+          <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.potentialIdeas?.join(', ') || 'None'}</Text>
         </Box>
         <Box>
-          <strong>Industry Interests:</strong>
-          <p>{profile.industryInterests?.join(', ') || 'None'}</p>
+          <strong>Areas of Responsibility</strong>
+          <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.areasOfResponsibility?.join(', ') || 'Not specified'}</Text>
         </Box>
         <Box>
-          <strong>Interested in Being a Cofounder:</strong>
-          <p>{profile.interestedInBeingACofounder ? 'Yes' : 'No'}</p>
+          <strong>Cofounder Desired Qualities</strong>
+          <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.cofounderDesiredQualities?.join(', ') || 'None'}</Text>
         </Box>
-        <Box>
-          <strong>Current School:</strong>
-          <p>{profile.currentSchool || 'Not provided'}</p>
-        </Box>
-        <Box>
-          <strong>Program Type:</strong>
-          <p>{profile.programType || 'Not specified'}</p>
-        </Box>
-        <Box>
-          <strong>Birth Date:</strong>
-          <p>{profile.birthDate ? new Date(profile.birthDate).toLocaleDateString() : 'Not provided'}</p>
-        </Box>
-        <Box>
-          <strong>Profile Picture:</strong>
-          <p>{profile.profilePicture ? <img src={profile.profilePicture} alt="Profile" style={{ width: 100, height: 100 }} /> : 'No image'}</p>
-        </Box>
-        <Box>
-          <strong>Previous Education:</strong>
-          <p>{profile.previousEducation || 'Not specified'}</p>
-        </Box>
-        <Box>
-          <strong>Employment History:</strong>
-          <p>{profile.employmentHistory || 'Not provided'}</p>
-        </Box>
-        <Box>
-          <strong>Scheduling URL:</strong>
-          <p>{profile.schedulingUrl ? <a href={profile.schedulingUrl} target="_blank" rel="noopener noreferrer">Schedule a meeting</a> : 'Not available'}</p>
-        </Box>
-        <Box>
-          <strong>Idea Commitment:</strong>
-          <p>{profile.hasIdea || 'Not specified'}</p>
-        </Box>
-        <Box>
-          <strong>Potential Ideas:</strong>
-          <p>{profile.potentialIdeas?.join(', ') || 'None'}</p>
-        </Box>
-        <Box>
-          <strong>Areas of Responsibility:</strong>
-          <p>{profile.areasOfResponsibility?.join(', ') || 'Not specified'}</p>
-        </Box>
-        <Box>
-          <strong>Cofounder Desired Qualities:</strong>
-          <p>{profile.cofounderDesiredQualities?.join(', ') || 'None'}</p>
-        </Box>
-        <Box>
-          <strong>Technical:</strong>
-          <p>{profile.technical ? 'Yes' : 'No'}</p>
-        </Box>
-        <Box>
-          <strong>Impressive Accomplishment:</strong>
-          <p>{profile.impressiveAccomplishment || 'Not provided'}</p>
-        </Box>
-        <Box>
-          <strong>LinkedIn URL:</strong>
-          <p>{profile.linkedinUrl ? <a href={profile.linkedinUrl} target="_blank" rel="noopener noreferrer">View LinkedIn</a> : 'No LinkedIn profile'}</p>
-        </Box>
+        </Card>
+
         <Button onClick={handleEditProfile}>Edit Profile</Button>
-      </Card>
     </Flex>
   </>
   );
