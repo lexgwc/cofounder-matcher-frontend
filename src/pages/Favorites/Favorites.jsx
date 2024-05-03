@@ -25,9 +25,9 @@ const Favorites = () => {
         });
     }, []);
 
-    // if (loading) return <div>Loading...</div>;
-    // if (error) return <div>Error: {error}</div>;
-    // if (favorites.length === 0) return <div>No Favorites Found</div>; 
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    if (favorites.length === 0) return <div>No Favorites Found</div>; 
 
   return (
     <Box>
