@@ -114,17 +114,20 @@ const CreateProfile1 = () => {
           ))}
         </select>
         <br/>
+        <br/>
 
         {/* Previous Education */}
         <label htmlFor="previousEducation">Education History:</label>
         <br/>
         <input type="text" id="previousEducation" name="previousEducation" value={profileData.previousEducation} onChange={handleChange}/>
         <br/>
+        <br/>
 
         {/* Employment History */}
         <label htmlFor="employmentHistory">Employment History:</label>
         <br/>
         <input type="text" id="employmentHistory" name="employmentHistory" value={profileData.employmentHistory} onChange={handleChange}/>
+        <br/>
         <br/>
 
         {/* Technical */}
@@ -135,11 +138,13 @@ const CreateProfile1 = () => {
         <option value="false">No</option>
         </select>
         <br/>
+        <br/>
 
         {/* Impressive Acomplishment */}
         <label htmlFor="impressiveAccomplishmnet">Brag About an Impressive Accomplishment:</label>
         <br/>
         <input type="text" id="impressiveAccomplishmnet" name="impressiveAccomplishmnet" value={profileData.impressiveAccomplishmnet} onChange={handleChange}/>
+        <br/>
         <br/>
 
         {/*Submit Button*/}

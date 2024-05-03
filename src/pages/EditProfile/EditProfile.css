@@ -8,10 +8,10 @@ form {
   width: 70%
 }
 
-input [type="date"] [type="file"] {
+input {
   background-color: rgba(13, 13, 13);
-  border-radius: 5px;
-  padding: 7px;
+  border-radius: 4px;
+  padding: 8px;
   color: rgb(97, 97, 97);
   border: 1px solid;
   border: 1px solid rgb(72, 72, 72);
@@ -23,6 +23,16 @@ input [type="date"] [type="file"] {
   box-sizing: border-box;
 }
 
+select {
+  background-color: rgba(13, 13, 13);
+  border-radius: 4px;
+  padding: 8px;
+  color: rgb(97, 97, 97);
+  border: 1px solid;
+  border: 1px solid rgb(72, 72, 72);
+  width: 100%;
+  max-width: 100%;
+}
 @media (max-width: 768px) {
   form {
     width: 90%;  /* Adjusts form width for smaller devices */

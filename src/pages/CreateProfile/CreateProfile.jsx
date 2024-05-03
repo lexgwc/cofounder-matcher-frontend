@@ -121,7 +121,7 @@ const CreateProfile = () => {
         
         <br/>
         {/* First Name */}
-        <label htmlFor="firstName">First name:</label>
+        <Text htmlFor="firstName">First name</Text>
         <br/>
         <TextField.Root id="firstName" name="firstName" value={profileData.firstName} onChange={handleChange} placeholder="First Name">
           <TextField.Slot/>
@@ -129,7 +129,7 @@ const CreateProfile = () => {
         <br/>
 
         {/* Last Name */}
-        <label htmlFor="lastName">Last name:</label>
+        <Text htmlFor="lastName">Last name</Text>
         <br/>
         <TextField.Root id="lastName" name="lastName" value={profileData.lastName} onChange={handleChange} placeholder="Last Name">
           <TextField.Slot/>
@@ -137,13 +137,14 @@ const CreateProfile = () => {
         <br/>
 
         {/* Date of Birth */}
-        <label htmlFor="birthdate">Birthdate:</label>
+        <Text htmlFor="birthdate">Birthdate</Text>
         <br/>
         <input type="date" id="birthDate" name="birthDate" value={profileData.birthDate} onChange={handleChange}/>
         <br/>
+        <br/>
 
         {/* School */}
-        <label htmlFor="currentSchool">School:</label>
+        <Text htmlFor="currentSchool">Current school</Text>
         <br/>
         <select id="currentSchool" name="currentSchool" value={profileData.currentSchool} onChange={handleChange}>
         <option value="">Select School</option>
@@ -152,10 +153,11 @@ const CreateProfile = () => {
             ))}
         </select>
         <br/>
+        <br/>
 
 
         {/* About Me */}
-        <label htmlFor="aboutMe">About me:</label>
+        <Text htmlFor="aboutMe">About me</Text>
         <br/>
         <TextField.Root id="aboutMe" name="aboutMe" value={profileData.aboutMe} onChange={handleChange} placeholder="Tell us about your background, interests, career, and what you're looking for on this app">
           <TextField.Slot/>
@@ -163,7 +165,7 @@ const CreateProfile = () => {
         <br/>
 
         {/* Linkedin */}
-        <label htmlFor="linkedinUrl">What's your LinkedIn URL?</label>
+        <Text htmlFor="linkedinUrl">LinkedIn URL</Text>
         <br/>
         <TextField.Root id="linkedinUrl" name="linkedinUrl" value={profileData.linkedinUrl} onChange={handleChange} placeholder="Linkedin URL">
           <TextField.Slot/>
@@ -171,7 +173,7 @@ const CreateProfile = () => {
         <br/>
 
         {/* Email */}
-        <label htmlFor="email">Email:</label>
+        <Text htmlFor="email">Email</Text>
         <br/>
         <TextField.Root id="email" name="email" value={profileData.email} onChange={handleChange} placeholder="Email">
           <TextField.Slot/>
@@ -179,9 +181,9 @@ const CreateProfile = () => {
         <br/>
 
         {/* Scheduling URL */}
-        <label htmlFor="schedulingUrl">Scheduling Link:</label>
+        <Text htmlFor="schedulingUrl">Scheduling URL</Text>
         <br/>
-        <TextField.Root id="schedulingUrl" name="schedulingUrl" value={profileData.schedulingUrl} onChange={handleChange} placeholder="schedulingUrl">
+        <TextField.Root id="schedulingUrl" name="schedulingUrl" value={profileData.schedulingUrl} onChange={handleChange} placeholder="Scheduling URL">
           <TextField.Slot/>
         </TextField.Root>
         <br/>
