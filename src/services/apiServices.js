@@ -90,6 +90,10 @@ export const getProfiles = async () => {
   return await api.get('/profiles')
 }
 
+export const getProfileByUserId = async (userId) => {
+  return await api.get(`/profiles/user-profile/${userId}`)
+}
+
 export const getProfileById = async (id) => {
   return await api.get(`/profiles/${id}`)
 }
