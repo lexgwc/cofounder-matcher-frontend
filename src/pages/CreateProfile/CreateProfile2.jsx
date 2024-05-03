@@ -13,11 +13,12 @@ const CreateProfile2 = () => {
   const userId = payload.userId;
 
   const [profileData, setProfileData] = useState({
-    previousEducation: '',
-    programType: '',
-    employmentHistory: '',
-    technical: '',
-    impressiveAccomplishmnet: '',
+    interestedInBeingACofounder: '',
+    connectionInterest: '',
+    industryInterests: [],
+    areasOfResponsibility: [],
+    hasIdea: ''
+
   })
 
   const [hasIdea, setHasIdea] = useState([])
@@ -97,7 +98,7 @@ const CreateProfile2 = () => {
       if (apiResponse.status !== 200) {
         throw new Error(apiResponse.error);
       }
-      navigate('/create-profile2');
+      navigate('/profile-search');
     } catch (error) {
       console.error(error);
     }
@@ -150,7 +151,10 @@ const CreateProfile2 = () => {
         </select> */}
 
         <>
-        <Select.Root defaultValue="Select Technical Skills">
+        <Select.Root id="interestedInBeingACofounder" 
+        name="interestedInBeingACofounder" 
+        value={profileData.interestedInBeingACofounder} 
+        onValueChange={(value) => handleChange({ target: { name: 'interestedInBeingACofounder', value } })}>
           <Select.Trigger />
           <Select.Content>
               <Select.Item value="true">Yes</Select.Item>
