@@ -10,7 +10,6 @@ const ProfileCard = ({ profile }) => {
     try {
       await getFavorites(profile);
       console.log("Added to favorites:", profile);
-      navigate('/favorites', { replace: true });
     } catch (error) {
       console.error("Error adding to favorites:", error);
     }

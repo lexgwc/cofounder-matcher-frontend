@@ -1,60 +1,11 @@
-// import React, { useState, useEffect } from 'react';
-// import { Avatar, Grid, Text, Card, Box, Heading } from '@radix-ui/themes';
-// import { getAllFavoritesByUserId, getProfileById } from '../../services/apiServices';
-// import ProfileCard from '../../components/profileCard/profileCard.jsx';
-
-// const Favorites = () => {
-//   const [favorites, setFavorites] = useState([]);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     const fetchFavorites = async () => {
-//       try {
-
-//         const response = await getAllFavoritesByUserId();
-//         console.log(response.data);
-//         setFavorites(response.data);
-//       } catch (error) {
-//         console.error("Failed to load favorites", error);
-//         setError('Failed to load favorites');
-//       } finally {
-//         setLoading(false);
-//       }
-//     };
-
-//     fetchFavorites();
-//   }, []);
-
-//   if (loading) return <div>Loading...</div>;
-//   if (error) return <div>Error: {error}</div>;
-//   if (favorites.length === 0) return <div>No Favorites Found</div>;
-
-//   return (
-//     <Box>
-//       <br/><br/><br/>
-//       <Heading>My Favorite Profiles</Heading>
-//       <Grid columns={1} style={{ gap: '20px' }}>
-//         {favorites.map(profile => (
-//           <ProfileCard key={profile.id} profile={profile} />
-//         ))}
-//       </Grid>
-//     </Box>
-//   );
-// };
-
-// export default Favorites;
-
 import React, { useState, useEffect } from 'react';
 import { Avatar, Grid, Text, Card, Box, Heading } from '@radix-ui/themes';
 import { getAllFavoritesByUserId, getProfileById } from '../../services/apiServices';
 import ProfileCard from '../../components/profileCard/profileCard.jsx';
-
 const Favorites = () => {
   const [profiles, setProfiles] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const fetchFavoritesAndProfiles = async () => {
       try {
@@ -62,7 +13,6 @@ const Favorites = () => {
         const response = await getAllFavoritesByUserId();
         const favoritesData = response.data;
         console.log(favoritesData);
-
         // Then, fetch profiles for each favorited ID
         const profilePromises = favoritesData.map(fav => getProfileById(fav.favoritedProfile));
         const profileResponses = await Promise.all(profilePromises);
@@ -75,14 +25,11 @@ const Favorites = () => {
         setLoading(false);
       }
     };
-
     fetchFavoritesAndProfiles();
   }, []);
-
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
   if (profiles.length === 0) return <div>No Favorites Found</div>;
-
   return (
     <Box>
       <br/><br/><br/>
@@ -95,8 +42,6 @@ const Favorites = () => {
     </Box>
   );
 };
-
 export default Favorites;
-
 
 
