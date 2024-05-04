@@ -23,15 +23,11 @@ const ProfileCard = ({ profile }) => {
   return (
     <Box>
     <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', margin: '15px', padding: '20px', width: '100%' }}>
-      Profile Card
-      <br/><br/>
-      <Avatar src={profile  && profile.avatar} alt={profile && profile.fullName} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
-      <br/><br/>
+      <Avatar src={profile.profilePicture} alt={profile && profile.profilePicture} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
       <Text>{profile.fullName}</Text><br/>
       <Button onClick={addToFavorites}>⭐</Button>
-      <Text>{profile.aboutMe}</Text>
+      <Text>{profile.currentSchool}</Text>
       <Text>{profile.programType}</Text>
-      <Text>{profile.connectionInterest}</Text>
     </Card>
     <></>
     </Box>
