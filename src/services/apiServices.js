@@ -165,8 +165,8 @@ export const getFavoriteById = async (id) => {
   return await api.get(`/favorites/${id}`)
 }
 
-export const getAllFavoritesByUserId = async (userId) => {
-  return await api.get(`/favorites/my-favorites/${userId}`)
+export const getAllFavoritesByUserId = async () => {
+  return await api.get(`/favorites/my-favorites`)
 }
 
 export const createFavorite = async (payload) => {
