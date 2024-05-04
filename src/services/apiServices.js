@@ -90,8 +90,15 @@ export const getProfiles = async () => {
   return await api.get('/profiles')
 }
 
+
 export const getProfileByUserId = async (userId) => {
   return await api.get(`/profiles/user-profile/${userId}`)
+}
+
+export const getProfilesByQuery = async (filters) => {
+  const queryParams = new URLSearchParams(filters).toString();
+  console.log(queryParams)
+  return await api.get(`/profiles/query?${queryParams}`);
 }
 
 export const getProfileById = async (id) => {
