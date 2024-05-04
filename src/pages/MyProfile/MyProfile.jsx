@@ -25,6 +25,7 @@ const MyProfile = () => {
         
         const payload = JSON.parse(atob(token.split('.')[1]));
         const userId = payload.userId;
+        console.log(userId);
 
         const apiResponse = await getProfileByUserId(userId);
         if (apiResponse.status !== 200) {
