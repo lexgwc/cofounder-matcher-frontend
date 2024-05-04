@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Text, Button, Avatar } from '@radix-ui/themes';
+import { Card, Text, Button, Avatar, Box } from '@radix-ui/themes';
 import { useNavigate } from 'react-router-dom';
 import { getFavorites, createFavorite } from '../../services/apiServices.js';
 
@@ -21,6 +21,7 @@ const ProfileCard = ({ profile }) => {
   }
 
   return (
+    <Box>
     <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', margin: '15px', padding: '20px', width: '100%' }}>
       Profile Card
       <br/><br/>
@@ -32,6 +33,8 @@ const ProfileCard = ({ profile }) => {
       <Text>{profile.programType}</Text>
       <Text>{profile.connectionInterest}</Text>
     </Card>
+    <></>
+    </Box>
   )
 }
 

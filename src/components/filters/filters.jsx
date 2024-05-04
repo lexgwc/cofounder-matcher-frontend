@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './filters.css';
 import { CheckboxGroup, DropdownMenu, Button, Flex } from '@radix-ui/themes'
 import {getSchools} from '../../services/apiServices.js';
@@ -8,18 +8,36 @@ import { getProgramTypes } from '../../services/apiServices.js';
 
 
 const Filters = ({ setFilters }) => {
+  const [ programTypes, setProgramTypes ] = useState([])
+  const [ schools, setSchools ] = useState([])
 
-  const handleSchoolChange = (School) => {
-    setFilters(filters => ({ ...filters, School }));
+  const handleSchoolChange = (currentSchool) => {
+    setFilters(filters => ({ ...filters, currentSchool }));
   };
 
-  const handleProgramChange = (Program) => {
-    setFilters(filters => ({ ...filters, Program }));
+  const handleProgramChange = (programType) => {
+    setFilters(filters => ({ ...filters, programType }));
   };
 
   const handleTechnicalChange = (event) => {
-    setFilters(filters => ({ ...filters, Technical: event.target.checked }));
+    setFilters(filters => ({ ...filters, technical: event.target.checked }));
   };
+
+  useEffect(() => {
+    const fetchProgramTypes = async () => {
+      const programTypes = await getProgramTypes()
+      setProgramTypes(programTypes.data)
+      console.log(programTypes)
+    }
+    const fetchSchools = async () => {
+      const schoolList = await getSchools()
+      setSchools(schoolList.data)
+      console.log(schoolList.data)
+      console.log(schools)
+    }
+    fetchProgramTypes()
+    fetchSchools()
+  },[])
 
   
   return(
@@ -38,8 +56,9 @@ const Filters = ({ setFilters }) => {
               </Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
-              <DropdownMenu.Item onSelect={() => handleSchoolChange('Harvard')}>Harvard</DropdownMenu.Item>
-              <DropdownMenu.Item onSelect={() => handleSchoolChange('Stanford')}>Stanford</DropdownMenu.Item>
+              {schools && schools.map((school, index) => (
+                <DropdownMenu.Item key={index} onSelect={() => handleSchoolChange(school.name)}>{school.name}</DropdownMenu.Item>
+              ))}
             </DropdownMenu.Content>
           </DropdownMenu.Root>
 
@@ -52,13 +71,14 @@ const Filters = ({ setFilters }) => {
               </Button>
             </DropdownMenu.Trigger>
             <DropdownMenu.Content>
-              <DropdownMenu.Item onSelect={() => handleProgramChange('Law')}>Law</DropdownMenu.Item>
-              <DropdownMenu.Item onSelect ={()=> handleProgramChange('Business')}>Business</DropdownMenu.Item>
+              {programTypes && programTypes.map((type, index) => (
+                <DropdownMenu.Item key={index} onSelect={() => handleProgramChange(type)}>{type}</DropdownMenu.Item>
+              ))}
             </DropdownMenu.Content>
           </DropdownMenu.Root>
 
           {/* Technical */}
-          <CheckboxGroup.Root defaultValue={['1']} name="technical">
+          <CheckboxGroup.Root defaultValue={[]} name="technical">
             <CheckboxGroup.Item value="1" onCheckedChange={handleTechnicalChange}>Technical</CheckboxGroup.Item>
           </CheckboxGroup.Root>
           
