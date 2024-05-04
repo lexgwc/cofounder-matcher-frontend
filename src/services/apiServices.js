@@ -170,7 +170,7 @@ export const getAllFavoritesByUserId = async (userId) => {
 }
 
 export const createFavorite = async (payload) => {
-  return await api.post('/favorites/', payload)
+  return await api.post('/favorites', payload)
 }
 
 export const updateFavoriteById = async (id, payload) => {
