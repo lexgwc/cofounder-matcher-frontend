@@ -1,10 +1,12 @@
 import React from 'react';
 import { Card, Text, Button, Avatar, Box } from '@radix-ui/themes';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { createFavorite } from '../../services/apiServices.js';
 
 
 const ProfileCard = ({ profile }) => { 
+  const [ favoriteStatus, setFavoriteStatus ] = useState(false)
+
   const addToFavorites = async () => {
     try {
       await createFavorite({profileId: profile._id});
