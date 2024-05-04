@@ -3,7 +3,7 @@ import { Avatar, Grid, Text, Card, Box, Heading } from '@radix-ui/themes';
 import logo from '../../../images/logo.png';
 import { getFavorites } from '../../services/apiServices.js';  // 
 import ProfileCard from '../../components/profileCard/profileCard.jsx';
-import { profile } from '../../data.js';
+
 
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
@@ -36,10 +36,8 @@ const Favorites = () => {
       <img src={logo} alt="Logo" style={{ width: '300px', height: 'auto', borderRadius: '30%' }}/><br/><br/><br/>
       <Heading>My Favorite Profiles</Heading>
       <Grid columns={1} style={{ gap: '20px' }}>
-      <ProfileCard profile={profile} />
-        {favorites.map((profile, index) => (
-           <ProfileCard key={index} profile={profile} />
-          
+        {favorites.map((profile) => (
+          <ProfileCard key={profile.id} profile={profile} />
         ))}
       </Grid>
     </Box>

@@ -7,7 +7,8 @@ import ProfileCard from '../../components/profileCard/profileCard.jsx';
 import { getSchools } from '../../services/apiServices.js';
 import { getSchoolById } from '../../services/apiServices.js'; 
 import { getProgramTypes } from '../../services/apiServices.js';
-import EditProfile from '../EditProfile/EditProfile.jsx';
+
+import AllProfileInfo from '../../components/allProfileInfo/allProfileInfo.jsx';
 
 
 
@@ -56,11 +57,9 @@ const ProfileSearch = () => {
         <Filters setFilters={setFilters} />
       
       <Grid columns={3} rows={4} style={{ gap: '20px', marginBottom: '20px' }}>
-<<<<<<< HEAD
-        <ProfileCard profile={profileArray[profileIndex]} />
-=======
-        <ProfileCard profile={profile} />
->>>>>>> 0c99f503e98fd3f41423ec733e092ba10f92f396
+      <ProfileCard profile={profileArray[profileIndex]} />
+      
+      <AllProfileInfo profile={profileArray[profileIndex]} />
         <Button onClick={handleSkip}>Skip for now</Button><br/><br/>
         <Button><NavLink to='/conversation'>Message</NavLink></Button>
       </Grid>
