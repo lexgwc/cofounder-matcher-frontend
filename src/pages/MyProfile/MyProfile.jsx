@@ -74,9 +74,9 @@ const MyProfile = () => {
             <Heading size="4">Basic Information</Heading>
             <br/>
             <Box>
-              <strong>Profile Picture:</strong>
-              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.profilePicture ? <img src={profile.profilePicture} alt="Profile" style={{ width: 100, height: 100 }} /> : 'No image'}</Text>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.profilePicture ? <img src={profile.profilePicture} alt="Profile" style={{ width: 100, height: 100, borderRadius: 50 }} /> : 'No image'}</Text>
             </Box>
+            <br/>
             <Box>
               <strong>Name</strong>
               <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.fullName || `${profile.firstName} ${profile.lastName}`}</Text>
