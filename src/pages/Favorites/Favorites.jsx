@@ -4,6 +4,7 @@ import logo from '../../../images/logo.png';
 import { getFavorites } from '../../services/apiServices.js';  // 
 import ProfileCard from '../../components/profileCard/profileCard.jsx';
 
+
 const Favorites = () => {
   const [favorites, setFavorites] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,9 +26,9 @@ const Favorites = () => {
         });
     }, []);
 
-    // if (loading) return <div>Loading...</div>;
-    // if (error) return <div>Error: {error}</div>;
-    // if (favorites.length === 0) return <div>No Favorites Found</div>; 
+    if (loading) return <div>Loading...</div>;
+    if (error) return <div>Error: {error}</div>;
+    if (favorites.length === 0) return <div>No Favorites Found</div>; 
 
   return (
     <Box>
@@ -35,10 +36,8 @@ const Favorites = () => {
       <img src={logo} alt="Logo" style={{ width: '300px', height: 'auto', borderRadius: '30%' }}/><br/><br/><br/>
       <Heading>My Favorite Profiles</Heading>
       <Grid columns={1} style={{ gap: '20px' }}>
-      <ProfileCard profile={profile} />
-        {favorites.map((profile, index) => (
-           <ProfileCard key={index} profile={profile} />
-          
+        {favorites.map((profile) => (
+          <ProfileCard key={profile.id} profile={profile} />
         ))}
       </Grid>
     </Box>
