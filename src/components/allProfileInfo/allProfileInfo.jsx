@@ -1,45 +1,32 @@
-import React from 'react'
-import { Text } from '@radix-ui/themes'
-import {getProfiles} from '../../services/apiServices.js'
-import { useState, useEffect } from 'react'
-import { dataListItemPropDefs } from '@radix-ui/themes/props';
+import React from 'react';
+import { Text } from '@radix-ui/themes';
 import CreateProfile from '../../pages/CreateProfile/CreateProfile.jsx';
 import CreateProfile2 from '../../pages/CreateProfile/CreateProfile2.jsx';  
-import CreateProfile1 from '../../pages/CreateProfile/CreateProfile.jsx';
+import CreateProfile1 from '../../pages/CreateProfile/CreateProfile1.jsx';
 
-
-
-
-const AllProfileInfo = () => {
-  const [Profile, setProfile] = useState([null])
-
-  useEffect(() => {
-
-    getProfiles().then(data => {
-      setProfile(data)
-    }).catch(error => { 
-      console.error("Failed to load profiles", error); 
-    });
-  }, []);
-
+const AllProfileInfo = ({ profile }) => {
   return (
     <>
-    <Text>{Profile.email}</Text>
-    <Text>{Profile.linkedinUrl}</Text>
-    <Text>{Profile.connectionInterest}</Text>
-    <Text>{Profile.industryInterests}</Text>
-    <Text>{Profile.reasOfResponsibility}</Text>
-    <Text>{Profile.employmentHistory}</Text>
-    <Text>{Profile.hasIdea}</Text>
-    <Text>{Profile.interestedInBeingACofounder}</Text>
-    <Text>{Profile.potentialIdeas}</Text>
-    <Text>{Profile.previousEducation}</Text>
-    <Text>{Profile.currentSchool}</Text>
-    <Text>{Profile.lastSeen}</Text>
-    <Text>{Profile.updatedAt}</Text>
-    <Text>{Profile.createdAt}</Text>
-    <></>
-      
+      {profile && (
+        <>
+          <Text>Email:  {profile.email}</Text>
+          <Text>Connection Interest:  {profile.connectionInterest}</Text>
+          <Text>Industry Interests:  {profile.industryInterests?.join(', ')}</Text>
+          <Text>Has Idea:  {profile.hasIdea}</Text>
+          <Text>Interested In Being A Cofounder:  {profile.interestedInBeingACofounder ? "Yes" : "No"}</Text>
+          <Text>Employment History:  {profile.employmentHistory}</Text>
+          <Text>Cofounder Desired Qualities:  {profile.cofounderDesiredQualities}</Text>
+          <Text>Potential Ideas: {profile.potentialIdeas}</Text>
+          <Text>Previous Education:  {profile.previousEducation}</Text>
+          <Text>program Type:  {profile.programType}</Text>
+          <Text>Technical:  {profile.technical}</Text>
+          <Text>linkedinUrl:  {profile.linkedinUrl}</Text>
+          <Text>Areas Of Responsibility:{profile.areasOfResponsibility?.join(', ')}</Text>
+          <Text>Created At:  {profile.createdAt}</Text>
+          <Text>Last Seen:  {profile.lastSeen}</Text>
+          <Text>Updated At:  {profile.updatedAt}</Text>
+        </>
+      )}
     </>
   );
 }
