@@ -66,7 +66,7 @@ const ProfileSearch = () => {
         left: 0,
         bottom: 0,
         width: '100%',
-        backgroundColor: 'rgb(17,17,17)',
+        backgroundColor: 'black',
         textAlign: 'center',      // Center the buttons
         padding: '10px 0'
       }}>

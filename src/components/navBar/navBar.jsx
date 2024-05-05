@@ -26,7 +26,7 @@ const Navbar = () => {
         <div style={{
             position: 'fixed', 
             top: 0, 
-            backgroundColor: 'rgb(17,17,17)', 
+            backgroundColor: 'black', 
             width: '100%', 
             zIndex: 2000,
             display: 'flex',  // Ensures the container is a flex container
