@@ -42,26 +42,32 @@ const ProfileCard = ({ profile }) => {
 
   return (
 
-    <Box width="100%">
+    <Box width="100%" style={{ marginBottom: '20px' }}>
     <Card>
-      <Flex gap="3" align="center">
-        <Avatar
-          size="3"
-          src={profile.profilePicture} alt={profile && profile.profilePicture}
-          radius="full"
-          fallback=""
-        />
-        <Box>
-          <Text as="div" size="2" weight="bold">
-            {profile.fullName}
-          </Text>
-          <Text as="div" size="2" color="gray">
-            {schoolName} | {profile.programType}
-          </Text>
-        </Box>
+      <Flex align="center" justify="space-between">
+        <Flex gap="3" align="center" style={{ flex: 1 }}>
+          <Avatar
+            size="3"
+            src={profile.profilePicture}
+            alt={profile && profile.profilePicture}
+            radius="full"
+            fallback=""
+          />
+          <Box>
+            <Text as="div" size="2" weight="bold">
+              {profile.fullName}
+            </Text>
+            <Text as="div" size="2" color="gray">
+              {schoolName} | {profile.programType}
+            </Text>
+          </Box>
+        </Flex>
+        <Button onClick={addToFavorites} style={{ marginLeft: '20px' }}>
+          ⭐
+        </Button>
       </Flex>
     </Card>
-    </Box>
+  </Box>
   )
 }
 
