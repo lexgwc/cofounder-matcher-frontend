@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom';
 import logo from '../../../images/logo1.png'
-import { Button, Heading, Text, Box, Flex } from '@radix-ui/themes'
+import { Button, Heading, Text, Flex } from '@radix-ui/themes'
 import './HomePage.css'
 import SchoolCount from '../../components/SchoolCount/SchoolCount.jsx'
 
@@ -18,6 +18,7 @@ const HomePage = () => {
       alignItems: 'center',
       justifyContent: 'center',
       width: '85vw',
+      maxWidth: '650px',
       textAlign: 'center'
     }}>
       <br/>
@@ -27,7 +28,7 @@ const HomePage = () => {
 
       <Heading size="6">Great things happen when great minds come together.</Heading><br/>
 
-      <Text> Whether you're looking for a cofounder for your next startup, seeking advice on your career path, or just want to connect with fellow students who share your professional interests, you've come to the right place.</Text><br/>
+      <Text> Whether you&apos;re looking for a cofounder for your next startup, seeking advice on your career path, or just want to connect with fellow students who share your professional interests, you&apos;ve come to the right place.</Text><br/>
       <Button> <NavLink to='/create-account'>Create an Account </NavLink></Button><br/>
       <Text>Already have an account? <NavLink to='/login'>  Login</NavLink></Text><br/>
       <Heading size="6">Join the community</Heading><br/>
