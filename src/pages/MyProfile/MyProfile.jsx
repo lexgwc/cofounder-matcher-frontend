@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getProfileByUserId } from '../../services/apiServices';
+import { getProfileByUserId, getSchoolById } from '../../services/apiServices';
 import { Box, Button, Heading, Card, Flex, Text } from '@radix-ui/themes'
 import './MyProfile.css'
 
@@ -43,6 +43,26 @@ const MyProfile = () => {
     fetchData();
   }, []);
 
+  const [schoolName, setSchoolName] = useState('')
+
+  useEffect(() => {
+    const fetchSchoolName = async () => {
+      if (profile && profile.currentSchool) {
+        try {
+          const response = await getSchoolById(profile.currentSchool);
+          console.log("School name response:", response);
+          setSchoolName(response.data.name);
+          console.log("School name:", schoolName);
+        } catch (error) {
+          console.error("Failed to fetch school name:", error);
+          setSchoolName('Unknown School');
+        }
+      }
+    };
+
+    fetchSchoolName();
+  }, [profile]);
+
   if (loading) {
     return <div>Loading profile...</div>;
   }
@@ -83,7 +103,7 @@ const MyProfile = () => {
               <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.fullName || `${profile.firstName} ${profile.lastName}`}</Text>
             </Box>
             <Box>
-              <strong>Birth Date:</strong>
+              <strong>Birth Date</strong>
               <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.birthDate ? new Date(profile.birthDate).toLocaleDateString() : 'Not provided'}</Text>
             </Box>
             <Box>
@@ -110,7 +130,7 @@ const MyProfile = () => {
             <br/>
             <Box>
               <strong>Current School</strong>
-              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.currentSchool || 'Not provided'}</Text>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{schoolName|| 'Not provided'}</Text>
             </Box>
             <Box>
               <strong>Current Program Type</strong>

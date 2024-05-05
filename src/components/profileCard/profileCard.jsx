@@ -1,11 +1,31 @@
 import React from 'react';
 import { Card, Text, Button, Avatar, Box } from '@radix-ui/themes';
-import { useState } from 'react';
-import { createFavorite } from '../../services/apiServices.js';
+import { useState, useEffect } from 'react';
+import { createFavorite, getSchoolById } from '../../services/apiServices.js';
 
 
 const ProfileCard = ({ profile }) => { 
   const [ favoriteStatus, setFavoriteStatus ] = useState(false)
+  const [schoolName, setSchoolName] = useState('')
+
+  useEffect(() => {
+    const fetchSchoolName = async () => {
+      if (profile && profile.currentSchool) {
+        try {
+          const response = await getSchoolById(profile.currentSchool);
+          console.log("School name response:", response);
+          setSchoolName(response.data.name);
+          console.log("School name:", schoolName);
+        } catch (error) {
+          console.error("Failed to fetch school name:", error);
+          setSchoolName('Unknown School');
+        }
+      }
+    };
+
+    fetchSchoolName();
+  }, [profile]);
+
 
   const addToFavorites = async () => {
     try {
@@ -26,7 +46,7 @@ const ProfileCard = ({ profile }) => {
       <Avatar src={profile.profilePicture} alt={profile && profile.profilePicture} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
       <Text>{profile.fullName}</Text><br/>
       <Button onClick={addToFavorites}>⭐</Button>
-      <Text>{profile.currentSchool}</Text>
+      <Text>{schoolName}</Text>
       <Text>{profile.programType}</Text>
     </Card>
     <></>
