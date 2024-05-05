@@ -1,12 +1,31 @@
 import React, { useEffect } from 'react';
-import { Card, Text, Button, Avatar, Box } from '@radix-ui/themes';
-import { useState } from 'react';
-import { createFavorite, deleteFavoriteById, getAllFavoritesByUserId } from '../../services/apiServices.js';
+import { Card, Text, Button, Avatar, Box, Flex } from '@radix-ui/themes';
+import { useState, useEffect } from 'react';
+import { createFavorite, getSchoolById, deleteFavoriteById, getAllFavoritesByUserId } from '../../services/apiServices.js';
 
 const ProfileCard = ({ profile }) => { 
   const [ favoriteStatus, setFavoriteStatus ] = useState(false)
   const [ favoriteId, setFavoriteId ] = useState('')
-  const [ clicked, setClicked ] = useState(1)
+  const [schoolName, setSchoolName] = useState('')
+
+  useEffect(() => {
+    const fetchSchoolName = async () => {
+      if (profile && profile.currentSchool) {
+        try {
+          const response = await getSchoolById(profile.currentSchool);
+          console.log("School name response:", response);
+          setSchoolName(response.data.name);
+          console.log("School name:", schoolName);
+        } catch (error) {
+          console.error("Failed to fetch school name:", error);
+          setSchoolName('Unknown School');
+        }
+      }
+    };
+
+    fetchSchoolName();
+    
+  }, [profile]);
 
   useEffect(() => {
     const fetchFavoriteStatus = async () => {
@@ -44,20 +63,31 @@ const ProfileCard = ({ profile }) => {
   }
 
   return (
-    <Box>
-    <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', margin: '15px', padding: '20px', width: '100%' }}>
-      Profile Card
-      <br/><br/>
-      <Avatar src={profile  && profile.avatar} alt={profile && profile.fullName} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
-      <br/><br/>
-      <Text>{profile.fullName}</Text><br/>
-      <Button onClick={favoriteStatus === false ? addToFavorites : removeFromFavorites}>{favoriteStatus === true ? '⭐' : 'Hi'}</Button>
-      <Text>{profile.aboutMe}</Text>
-      <Text>{profile.programType}</Text>
-      <Text>{profile.connectionInterest}</Text>
+
+    <Box width="100%" style={{ marginBottom: '20px' }}>
+    <Card>
+      <Flex align="center" justify="space-between">
+        <Flex gap="3" align="center" style={{ flex: 1 }}>
+          <Avatar
+            size="3"
+            src={profile.profilePicture}
+            alt={profile && profile.profilePicture}
+            radius="full"
+            fallback=""
+          />
+          <Box>
+            <Text as="div" size="2" weight="bold">
+              {profile.fullName}
+            </Text>
+            <Text as="div" size="2" color="gray">
+              {schoolName} | {profile.programType}
+            </Text>
+          </Box>
+        </Flex>
+        <Button onClick={favoriteStatus === false ? addToFavorites : removeFromFavorites}>{favoriteStatus === true ? '⭐' : 'Hi'}</Button>
+      </Flex>
     </Card>
-    <></>
-    </Box>
+  </Box>
   )
 }
 
