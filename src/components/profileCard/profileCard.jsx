@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Text, Button, Avatar, Box } from '@radix-ui/themes';
+import { Card, Text, Button, Avatar, Box, Flex } from '@radix-ui/themes';
 import { useState, useEffect } from 'react';
 import { createFavorite, getSchoolById } from '../../services/apiServices.js';
 
@@ -41,15 +41,26 @@ const ProfileCard = ({ profile }) => {
   }
 
   return (
-    <Box>
-    <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', padding: '20px', width: '100%' }}>
-      <Avatar src={profile.profilePicture} alt={profile && profile.profilePicture} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
-      <Text>{profile.fullName}</Text><br/>
-      <Button onClick={addToFavorites}>⭐</Button>
-      <Text>{schoolName}</Text>
-      <Text>{profile.programType}</Text>
+
+    <Box width="100%">
+    <Card>
+      <Flex gap="3" align="center">
+        <Avatar
+          size="3"
+          src={profile.profilePicture} alt={profile && profile.profilePicture}
+          radius="full"
+          fallback=""
+        />
+        <Box>
+          <Text as="div" size="2" weight="bold">
+            {profile.fullName}
+          </Text>
+          <Text as="div" size="2" color="gray">
+            {schoolName} | {profile.programType}
+          </Text>
+        </Box>
+      </Flex>
     </Card>
-    <></>
     </Box>
   )
 }
