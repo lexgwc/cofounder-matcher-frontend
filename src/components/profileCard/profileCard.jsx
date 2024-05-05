@@ -42,7 +42,7 @@ const ProfileCard = ({ profile }) => {
 
   return (
     <Box>
-    <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', margin: '15px', padding: '20px', width: '100%' }}>
+    <Card style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'space-between', padding: '20px', width: '100%' }}>
       <Avatar src={profile.profilePicture} alt={profile && profile.profilePicture} style={{ width: '100px', height: '100px', borderRadius: '50%' }} />
       <Text>{profile.fullName}</Text><br/>
       <Button onClick={addToFavorites}>⭐</Button>

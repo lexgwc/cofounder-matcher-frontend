@@ -91,7 +91,7 @@ const MyProfile = () => {
         </Box>
         
       {/* Basic Information */}
-        <Card style={{ justifyContent: 'center', textAlign: 'center', width: '90%', paddingTop: 20, paddingBottom: 10, marginTop: 100 }}>
+        <Card style={{ justifyContent: 'center', textAlign: 'center', width: '90%', paddingTop: 20, paddingBottom: 10, marginTop: 50 }}>
             <Heading size="4">Basic Information</Heading>
             <br/>
             <Box>

@@ -1,10 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, Card, Box, Heading } from '@radix-ui/themes';
+import { getSchoolById } from '../../services/apiServices';
 import CreateProfile from '../../pages/CreateProfile/CreateProfile.jsx';
 import CreateProfile2 from '../../pages/CreateProfile/CreateProfile2.jsx';  
 import CreateProfile1 from '../../pages/CreateProfile/CreateProfile1.jsx';
 
 const AllProfileInfo = ({ profile }) => {
+  const [schoolName, setSchoolName] = useState('')
+
+  useEffect(() => {
+    const fetchSchoolName = async () => {
+      if (profile && profile.currentSchool) {
+        try {
+          const response = await getSchoolById(profile.currentSchool);
+          console.log("School name response:", response);
+          setSchoolName(response.data.name);
+          console.log("School name:", schoolName);
+        } catch (error) {
+          console.error("Failed to fetch school name:", error);
+          setSchoolName('Unknown School');
+        }
+      }
+    };
+
+    fetchSchoolName();
+  }, [profile]);
+
   return (
     <>
       {profile && (
@@ -18,7 +39,7 @@ const AllProfileInfo = ({ profile }) => {
               <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.fullName || `${profile.firstName} ${profile.lastName}`}</Text>
             </Box>
             <Box>
-              <strong>Birth Date:</strong>
+              <strong>Birth Date</strong>
               <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.birthDate ? new Date(profile.birthDate).toLocaleDateString() : 'Not provided'}</Text>
             </Box>
             <Box>
@@ -45,7 +66,7 @@ const AllProfileInfo = ({ profile }) => {
             <br/>
             <Box>
               <strong>Current School</strong>
-              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{profile.currentSchool || 'Not provided'}</Text>
+              <Text display="block" size="2" color="gray" style={{ display: 'block' }}>{schoolName || 'Not provided'}</Text>
             </Box>
             <Box>
               <strong>Current Program Type</strong>
