@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Card, Text, Button, Avatar, Box, Flex } from '@radix-ui/themes';
 import { useState, useEffect } from 'react';
 import { createFavorite, getSchoolById, deleteFavoriteById, getAllFavoritesByUserId } from '../../services/apiServices.js';
