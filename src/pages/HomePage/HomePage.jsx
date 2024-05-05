@@ -7,13 +7,17 @@ import SchoolCount from '../../components/SchoolCount/SchoolCount.jsx'
 
 const HomePage = () => {
   return (
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center'
+    }}>
     <Flex direction='column' alignItems='center' wrap='wrap'
     style={{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       justifyContent: 'center',
-      width: '95%',
+      width: '85vw',
       textAlign: 'center'
     }}>
       <br/>
@@ -31,6 +35,6 @@ const HomePage = () => {
       <br/>
       <SchoolCount/>
     </Flex>
-  
+    </div>
   )}
 export default HomePage

@@ -53,12 +53,33 @@ const ProfileSearch = () => {
 
   return (
     <>
+    <div style={{
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center'
+    }}>
       <Box style={{
         marginTop: '70px',
-        width: '100%'}}>
+        width: '85vw',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center'
+        }}>
+        <div style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'center',
+          marginBottom:  '30px'
+        }}>
         <Filters setFilters={setFilters} />
-      
-      <Grid columns={3} rows={4} style={{ gap: '20px', marginBottom: '20px' }}>
+        </div>
+      <Grid columns={3} rows={4} style={{
+        gap: '20px',
+        marginBottom: '20px',
+        width: '100%',
+        justifyContent: 'center'
+      }}>
       <ProfileCard profile={profileArray[profileIndex]} />
       <AllProfileInfo profile={profileArray[profileIndex]} />
       <div style={{
@@ -80,6 +101,7 @@ const ProfileSearch = () => {
       </Grid>
 
       </Box>
+      </div>
     </>
   );
 };
