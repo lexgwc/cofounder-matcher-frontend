@@ -63,7 +63,7 @@ const ProfileCard = ({ profile }) => {
 
   return (
 
-    <Box style={{ marginBottom: '20px', width: '90vw' }}>
+    <Box style={{ marginBottom: '20px', width: '90vw', maxWidth: '800px'}}>
     <Card>
       <Flex align="center" justify="space-between">
         <Flex gap="3" align="center" style={{ flex: 1 }}>

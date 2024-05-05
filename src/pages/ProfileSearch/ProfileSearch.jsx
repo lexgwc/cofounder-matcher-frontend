@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Filters from '../../components/filters/filters.jsx';
-import { Avatar, Grid, Button, Text, Card, Box} from '@radix-ui/themes';
+import { Grid, Button, Box} from '@radix-ui/themes';
 import { NavLink } from 'react-router-dom';
 import { getProfilesByQuery } from '../../services/apiServices.js';
 import ProfileCard from '../../components/profileCard/profileCard.jsx';
-import { getSchools } from '../../services/apiServices.js';
-import { getSchoolById } from '../../services/apiServices.js'; 
-import { getProgramTypes } from '../../services/apiServices.js';
-
 import AllProfileInfo from '../../components/allProfileInfo/allProfileInfo.jsx';
 
 
@@ -47,7 +43,14 @@ const ProfileSearch = () => {
 
   const handleSkip = () => {
     setProfileIndex(prevIndex => (prevIndex + 1) % profileArray.length);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    })
   };
+
+  if (loading) return <div>Loading...</div>;
 
   console.log("Rendering with profile:", profileArray[profileIndex]);
 
