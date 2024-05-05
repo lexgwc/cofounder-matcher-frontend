@@ -16,7 +16,7 @@ const CreateProfile1 = () => {
     previousEducation: '',
     programType: '',
     employmentHistory: '',
-    technical: '',
+    technical: true,
     impressiveAccomplishmnet: '',
   })
 
@@ -137,8 +137,8 @@ const CreateProfile1 = () => {
         <Text htmlFor="technical">Are you technical?</Text>
         <br/>
         <select id="technical" name="technical" value={profileData.technical} onChange={handleChange}>
-        <option value="true">Yes</option>
-        <option value="false">No</option>
+        <option value={true}>Yes</option>
+        <option value={false}>No</option>
         </select>
         <br/>
         <br/>
