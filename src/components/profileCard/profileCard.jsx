@@ -37,7 +37,7 @@ const ProfileCard = ({ profile }) => {
       })
     }
     fetchFavoriteStatus()
-  },[clicked])
+  },[])
 
   const addToFavorites = async () => {
     try {
@@ -63,7 +63,7 @@ const ProfileCard = ({ profile }) => {
 
   return (
 
-    <Box width="100%" style={{ marginBottom: '20px' }}>
+    <Box style={{ marginBottom: '20px', width: '90vw' }}>
     <Card>
       <Flex align="center" justify="space-between">
         <Flex gap="3" align="center" style={{ flex: 1 }}>
