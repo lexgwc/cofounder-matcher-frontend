@@ -86,7 +86,7 @@ const ProfileCard = ({ profile }) => {
           />
           <Box>
             <Text as="div" size="2" weight="bold">
-              {profile.fullName}
+              {profile.fullName ? profile.fullName : `${profile.firstName} ${profile.lastName}`}
             </Text>
             <Text as="div" size="2" color="gray">
               {schoolName} | {profile.programType}
