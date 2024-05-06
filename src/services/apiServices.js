@@ -46,6 +46,10 @@ export const getConversationById = async (id) => {
   return await api.get(`/conversations/${id}`)
 }
 
+export const getConversationsByUserId = async () => {
+  return await api.get(`/conversations/inbox`)
+}
+
 export const createConversation = async (payload) => {
   return await api.post('/conversations', payload)
 }
