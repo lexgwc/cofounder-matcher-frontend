@@ -24,7 +24,7 @@ const HomePage = () => {
       <br/>
       <img src={logo} alt="Logo"style={{ width: '80px', height: 'auto', borderRadius: '30%'  }} className="logo" /><br/>
 
-      <Heading size="8">Campus Connect</Heading><br/><br/>
+      <Heading size="8">Stanford Campus Connect</Heading><br/><br/>
 
       <Heading size="6">Great things happen when great minds come together.</Heading><br/>
 
@@ -35,6 +35,8 @@ const HomePage = () => {
       <Text>Users on top campuses</Text>
       <br/>
       <SchoolCount/>
+      <Text as="p" style={{ color: 'gray', fontSize: '0.8em', marginTop: '10px', fontStyle: 'italic'}}>*Disclaimer: Please note that this is an independent student-run app and not an official Stanford University product.
+      </Text><br/>
     </Flex>
     </div>
   )}
