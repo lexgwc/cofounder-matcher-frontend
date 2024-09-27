@@ -95,7 +95,8 @@ const ProfileCard = ({ profile }) => {
                 {profile.fullName ? profile.fullName : `${profile.firstName} ${profile.lastName}`}
               </Text>
               <Text as="div" size="2" color="gray">
-                {schoolName} | {profile.programType}
+                {/* {schoolName} | {profile.programType} */}
+                {profile.programType}
               </Text>
             </Box>
           </Flex>
