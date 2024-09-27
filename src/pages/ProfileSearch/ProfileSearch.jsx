@@ -20,7 +20,7 @@ const ProfileSearch = () => {
   useEffect(() => {
     async function fetchProfiles() {
       setLoading(true);
-      console.log('Filtros aplicados:', filters);
+      console.log('Filters applied:', filters);
       Object.entries(filters).map(([key, value]) => {
         if (value) {
           query[key] = value
