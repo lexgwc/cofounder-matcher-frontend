@@ -7,7 +7,7 @@ const ChatPreview = ({ conversation }) => {
   const [profile, setProfile] = useState('')
   const navigate = useNavigate()
 
-  const token = sessionStorage.getItem('cofoundermatchersessionkey48484');
+  const token = sessionStorage.getItem('stanfordkey1885');
   if (!token) {
     throw new Error("Authentication token not found");
   }

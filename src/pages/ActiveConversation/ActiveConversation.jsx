@@ -12,7 +12,7 @@ const ActiveConversation = () => {
   const [text, setText] = useState('')
   const { conversationId } = useParams()
 
-  const token = sessionStorage.getItem('cofoundermatchersessionkey48484');
+  const token = sessionStorage.getItem('stanfordkey1885');
   if (!token) {
     throw new Error("Authentication token not found");
   }
