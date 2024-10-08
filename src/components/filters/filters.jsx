@@ -146,14 +146,16 @@ const Filters = ({ setFilters, handleSearch }) => {
               <CheckboxGroup.Item value="1" onCheckedChange={handleTechnicalChange}>Technical</CheckboxGroup.Item>
             </CheckboxGroup.Root>
   
-            {/* Redo Search Button */}
-            <Button variant='surface' onClick={handleSearch} style={{ marginLeft: '10px' }}>
-              <FiSearch />
-              Redo Search
-            </Button>
-  
           </div>
         </Flex>
+          
+          {/* Redo Search Button */}
+          <br/>
+          <Button variant='surface' onClick={handleSearch} style={{ marginLeft: '10px' }}>
+              <FiSearch />
+              Redo Search
+          </Button>
+
       </Flex>
     </>
   );
