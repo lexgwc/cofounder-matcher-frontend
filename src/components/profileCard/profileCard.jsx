@@ -1,4 +1,4 @@
-import { Card, Text, Button, Avatar, Box, Flex } from '@radix-ui/themes';
+import { Card, Text, Button, Avatar, Box, Flex, Heading } from '@radix-ui/themes';
 import { useState, useEffect, useCallback } from 'react';
 import { createFavorite, getSchoolById, deleteFavoriteById, getAllFavoritesByUserId } from '../../services/apiServices.js';
 import { StarIconEmpty, StarIconFilled } from '../StarIcons/StarIcons.jsx';
@@ -78,31 +78,80 @@ const ProfileCard = ({ profile }) => {
   }
 
   return (
+  //   <Box style={{ marginBottom: '20px', width: '90vw', maxWidth: '800px' }}>
+  //   <Flex align="center" justify="space-between">
+  //     <Flex gap="3" align="center" style={{ flex: 1 }}>
+  //       <Avatar
+  //         size="3"
+  //         src={profile.profilePicture}
+  //         alt={profile?.profilePicture || 'Profile Picture'} // Fallback alt text
+  //         radius="full"
+  //         fallback=""
+  //       />
+  //       <Box>
+  //         <Heading onClick={handleViewProfile} className='profile-full-name'>
+  //           {profile.fullName || `${profile.firstName} ${profile.lastName}`}
+  //         </Heading>
+  //         <Text as="div" size="2" color="gray">
+  //           {profile.programType}
+  //         </Text>
+  //       </Box>
+  //     </Flex>
+  //     <Button onClick={favoriteStatus ? removeFromFavorites : addToFavorites}>
+  //       {favoriteStatus ? <StarIconFilled /> : <StarIconEmpty />}
+  //     </Button>
+  //   </Flex>
+  // </Box>
 
-    <Box style={{ marginBottom: '20px', width: '90vw', maxWidth: '800px' }}>
-      <Card>
-        <Flex align="center" justify="space-between">
-          <Flex gap="3" align="center" style={{ flex: 1 }}>
-            <Avatar
-              size="3"
-              src={profile.profilePicture}
-              alt={profile && profile.profilePicture}
-              radius="full"
-              fallback=""
-            />
-            <Box>
-              <Text as="div" size="2" weight="bold" onClick={handleViewProfile} className='profile-full-name'>
-                {profile.fullName ? profile.fullName : `${profile.firstName} ${profile.lastName}`}
-              </Text>
-              <Text as="div" size="2" color="gray">
-                {schoolName} | {profile.programType}
-              </Text>
-            </Box>
-          </Flex>
-          <Button onClick={favoriteStatus === false ? addToFavorites : removeFromFavorites}>{favoriteStatus === true ? <StarIconFilled /> : <StarIconEmpty />}</Button>
-        </Flex>
-      </Card>
-    </Box>
+  //V2
+//   <Box style={{ marginBottom: '20px', width: '90vw', maxWidth: '800px', textAlign: 'center' }}>
+//   <Flex direction="column" align="center" justify="center">
+//     <Heading onClick={handleViewProfile} className='profile-full-name' style={{ marginBottom: '8px' }}>
+//       {profile.fullName || `${profile.firstName} ${profile.lastName}`}
+//     </Heading>
+//     <Text as="div" size="2" color="gray" style={{ marginBottom: '16px' }}>
+//       {profile.programType}
+//     </Text>
+//     <Avatar
+//       size="5" // Increased size for larger avatar
+//       src={profile.profilePicture}
+//       alt={profile?.profilePicture || 'Profile Picture'}
+//       radius="full"
+//       fallback=""
+//       style={{ margin: '0 auto' }} // Center avatar
+//     />
+//     <Button onClick={favoriteStatus ? removeFromFavorites : addToFavorites} style={{ marginTop: '12px' }}>
+//       {favoriteStatus ? <StarIconFilled /> : <StarIconEmpty />}
+//     </Button>
+//   </Flex>
+// </Box>
+//   )
+
+<Box style={{ marginBottom: '20px', width: '100%', maxWidth: '800px', textAlign: 'center', margin: '0 auto' }}>
+  <Flex direction="column" align="center" justify="center">
+    <Heading onClick={handleViewProfile} className='profile-full-name' style={{ marginBottom: '8px' }}>
+      {profile.fullName || `${profile.firstName} ${profile.lastName}`}
+    </Heading>
+    <Text as="div" size="2" color="gray" style={{ marginBottom: '16px' }}>
+      {profile.programType}
+    </Text>
+    <Avatar
+      size="5" 
+      src={profile.profilePicture}
+      alt={profile?.profilePicture || 'Profile Picture'}
+      radius="full"
+      fallback=""
+      style={{ margin: '0 auto' }} 
+    />
+    <Button onClick={favoriteStatus ? removeFromFavorites : addToFavorites} style={{
+          position: 'absolute',
+          top: '20px',
+          right: '20px'
+        }}>
+      {favoriteStatus ? <StarIconFilled /> : <StarIconEmpty />}
+    </Button>
+  </Flex>
+</Box>
   )
 }
 
