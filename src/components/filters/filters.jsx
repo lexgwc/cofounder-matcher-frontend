@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './filters.css';
 import { CheckboxGroup, DropdownMenu, Button, Flex, Heading } from '@radix-ui/themes'
+import { FiSearch } from 'react-icons/fi';
 // import { getSchools } from '../../services/apiServices.js';
 import { getProgramTypes, getAreasOfResponsibility, getIndustryInterests } from '../../services/apiServices.js';
 
@@ -45,6 +46,67 @@ const Filters = ({ setFilters, handleSearch }) => {
   }, [])
 
 
+  // return (
+  //   <>
+  //     <Flex direction={'column'} align={'center'}>
+  //       <div style={{
+  //         fontSize: '24px',
+  //         paddingBottom: '10px'
+  //       }}>
+  //         <Heading>
+  //           Profile Search
+  //         </Heading>
+  //       </div>
+
+  //       <Flex gap="3" direction="row" wrap="wrap" align={'center'} asChild>
+  //         <div>
+
+  //           {/* Schools Dropdown */}
+  //           {/* <DropdownMenu.Root>
+  //             <DropdownMenu.Trigger asChild>
+  //               <Button variant="soft">
+  //                 {schoolSelected}
+  //                 <DropdownMenu.TriggerIcon />
+  //               </Button>
+  //             </DropdownMenu.Trigger>
+  //             <DropdownMenu.Content>
+  //               {schools && schools.map((school, index) => (
+  //                 <DropdownMenu.Item key={index} onSelect={() => handleSchoolChange(school.name, school._id)}>{school.name}</DropdownMenu.Item>
+  //               ))}
+  //             </DropdownMenu.Content>
+  //           </DropdownMenu.Root> */}
+
+  //           {/* Programs Dropdown */}
+  //           <DropdownMenu.Root>
+  //             <DropdownMenu.Trigger asChild>
+  //               <Button variant="soft">
+  //                 {programSelected}
+  //                 <DropdownMenu.TriggerIcon />
+  //               </Button>
+  //             </DropdownMenu.Trigger>
+  //             <DropdownMenu.Content>
+  //               {programTypes && programTypes.map((type, index) => (
+  //                 <DropdownMenu.Item key={index} onSelect={() => handleProgramChange(type)}>{type}</DropdownMenu.Item>
+  //               ))}
+  //             </DropdownMenu.Content>
+  //           </DropdownMenu.Root>
+
+  //           {/* Technical */}
+  //           <CheckboxGroup.Root value={technical ? ['1'] : []}
+  //             name="technical"
+  //             onValueChange={(values) => {
+  //               handleTechnicalChange(values.includes('1'))
+  //             }}>
+  //             <CheckboxGroup.Item value="1" onCheckedChange={handleTechnicalChange}>Technical</CheckboxGroup.Item>
+  //           </CheckboxGroup.Root>
+
+  //         </div>
+  //       </Flex>
+  //       <Button onClick={handleSearch} style={{ marginTop: '20px' }}>Redo Search</Button>
+  //     </Flex>
+  //   </>
+  // )
+
   return (
     <>
       <Flex direction={'column'} align={'center'}>
@@ -57,24 +119,9 @@ const Filters = ({ setFilters, handleSearch }) => {
           </Heading>
         </div>
 
-        <Flex gap="3" direction="row" wrap="wrap" align={'center'} asChild>
-          <div>
-
-            {/* Schools Dropdown */}
-            {/* <DropdownMenu.Root>
-              <DropdownMenu.Trigger asChild>
-                <Button variant="soft">
-                  {schoolSelected}
-                  <DropdownMenu.TriggerIcon />
-                </Button>
-              </DropdownMenu.Trigger>
-              <DropdownMenu.Content>
-                {schools && schools.map((school, index) => (
-                  <DropdownMenu.Item key={index} onSelect={() => handleSchoolChange(school.name, school._id)}>{school.name}</DropdownMenu.Item>
-                ))}
-              </DropdownMenu.Content>
-            </DropdownMenu.Root> */}
-
+        <Flex gap="3" direction="row" wrap="wrap" align={'center'}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+  
             {/* Programs Dropdown */}
             <DropdownMenu.Root>
               <DropdownMenu.Trigger asChild>
@@ -89,7 +136,7 @@ const Filters = ({ setFilters, handleSearch }) => {
                 ))}
               </DropdownMenu.Content>
             </DropdownMenu.Root>
-
+  
             {/* Technical */}
             <CheckboxGroup.Root value={technical ? ['1'] : []}
               name="technical"
@@ -98,12 +145,18 @@ const Filters = ({ setFilters, handleSearch }) => {
               }}>
               <CheckboxGroup.Item value="1" onCheckedChange={handleTechnicalChange}>Technical</CheckboxGroup.Item>
             </CheckboxGroup.Root>
-
+  
+            {/* Redo Search Button */}
+            <Button variant='surface' onClick={handleSearch} style={{ marginLeft: '10px' }}>
+              <FiSearch />
+              Redo Search
+            </Button>
+  
           </div>
         </Flex>
-        <Button onClick={handleSearch} style={{ marginTop: '20px' }}>Redo Search</Button>
       </Flex>
     </>
-  )
+  );
+  
 }
 export default Filters;
