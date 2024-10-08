@@ -93,7 +93,7 @@ const ProfileSearch = () => {
         justifyContent: 'center'
       }}>
         <Box style={{
-          marginTop: '70px',
+          marginTop: '20px',
           width: '85vw',
           display: 'flex',
           flexDirection: 'column',
