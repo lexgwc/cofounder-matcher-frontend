@@ -7,7 +7,7 @@ import { Flex, Button, Heading, Text, Progress, TextField, Box, Select, ScrollAr
 
 const EditProfile = () => {
 
-  const token = sessionStorage.getItem('cofoundermatchersessionkey48484');
+  const token = sessionStorage.getItem('stanfordkey1885');
   const payload = JSON.parse(atob(token.split('.')[1]));
   const userId = payload.userId;
 
