@@ -130,6 +130,7 @@
 
 
 import { useEffect, useState } from 'react';
+import ProfileCard from '../profileCard/profileCard';
 import { Text, Card, Box, Heading, Separator } from '@radix-ui/themes';
 import { getSchoolById } from '../../services/apiServices';
 
@@ -160,9 +161,11 @@ const AllProfileInfo = ({ profile }) => {
       {profile && (
         <>
           
-        <Card style={{ justifyContent: 'center', textAlign: 'center', width: '100%', paddingTop: 20, paddingBottom: 10 }}>
+        <Card style={{ justifyContent: 'center', textAlign: 'center', width: '100%', paddingTop: 20, paddingBottom: 10, margin: '0 auto' }}>
           {/* Basic Information */}
-            <Heading size="4">Basic Information</Heading>
+          <ProfileCard profile={profile}/>
+          <br/>
+            <Heading size="5">Basic Information</Heading>
             <br/>
             <Box>
               <strong>Name</strong>
@@ -189,10 +192,10 @@ const AllProfileInfo = ({ profile }) => {
               <Text display="block" size="2" color="gray" style={{ display: 'block', maxWidth: '800px' }}>{profile.schedulingUrl ? <a href={profile.schedulingUrl} target="_blank" rel="noopener noreferrer">Schedule a meeting</a> : 'Not available'}</Text>
             </Box>
             <br/>
-            <Separator orientation="horizontal" size="4"/>
+            {/* <Separator orientation="horizontal" size="4"/> */}
             <br/>
 
-            <Heading size="4">Education and Experience</Heading>
+            <Heading size="5">Education and Experience</Heading>
             <br/>
             <Box>
               <strong>Current School</strong>
@@ -219,10 +222,10 @@ const AllProfileInfo = ({ profile }) => {
               <Text display="block" size="2" color="gray" style={{ display: 'block', maxWidth: '800px' }}>{profile.impressiveAccomplishment || 'Not provided'}</Text>
             </Box>
             <br/>
-            <Separator orientation="horizontal" size="4"/>
+            {/* <Separator orientation="horizontal" size="4"/> */}
             <br/>
 
-        <Heading size="4">Interests and Ideas</Heading>
+        <Heading size="5">Interests and Ideas</Heading>
             <br/>
         <Box>
           <strong>Who I&apos;m Interested in Connecting With</strong>

@@ -21,7 +21,6 @@ const CreateAccount = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log({email: email, password: password})
   
     try {
       const apiResponseSignup = await signup({ email: email, password: password })

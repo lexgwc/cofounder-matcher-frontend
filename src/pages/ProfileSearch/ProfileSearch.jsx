@@ -115,7 +115,7 @@ const ProfileSearch = () => {
           }}>
             {profileArray.length > 0 ?
               <>
-                <ProfileCard profile={profileArray[profileIndex]} />
+                {/* <ProfileCard profile={profileArray[profileIndex]} /> */}
                 <AllProfileInfo profile={profileArray[profileIndex]} />
                 <div style={{
                   position: 'fixed',
