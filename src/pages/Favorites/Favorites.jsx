@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Box, Heading } from '@radix-ui/themes';
+import { Box, Heading, Card } from '@radix-ui/themes';
 import { getAllFavoritesByUserId, getProfileById } from '../../services/apiServices';
 import ProfileCard from '../../components/profileCard/profileCard.jsx';
 import Loading from '../../components/Loading/Loading.jsx';
@@ -60,8 +60,10 @@ const Favorites = () => {
         }}
       >
         {profiles.map((profile) => (
-          <Box key={profile._id}>
-            <ProfileCard profile={profile} />
+          <Box key={profile._id} style={{ width: '100%', maxWidth: '800px' }}>
+            <Card style={{paddingBottom: '20px' }}>
+              <ProfileCard profile={profile} />
+            </Card>
           </Box>
         ))}
       </Box>
