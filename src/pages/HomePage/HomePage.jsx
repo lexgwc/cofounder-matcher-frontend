@@ -32,7 +32,7 @@ const HomePage = () => {
       <Button className='create-account-button'> <NavLink to='/create-account' className='create-account-navlink'>Create an Account </NavLink></Button><br/>
       <Text>Already have an account? <NavLink to='/login'>  Login</NavLink></Text><br/>
       <Heading size="6">Join the community</Heading><br/>
-      <Text>Users on top campuses</Text>
+      <Text>Current Users at Stanford:</Text>
       <br/>
       <SchoolCount/>
       <Text as="p" style={{ color: 'gray', fontSize: '0.8em', marginTop: '10px', fontStyle: 'italic'}}>*Disclaimer: Please note that this is an independent student-run app and not an official Stanford University product.
