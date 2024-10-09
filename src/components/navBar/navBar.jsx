@@ -30,7 +30,7 @@ const Navbar = () => {
         <div style={{
             position: 'fixed',
             top: 0,
-            backgroundColor: 'black',
+            backgroundColor: 'white',
             width: '100%',
             zIndex: 2000,
             display: 'flex',

@@ -12,8 +12,7 @@ import {Theme} from "@radix-ui/themes"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <Theme accentColor="indigo" 
-    appearance="dark">
+    <Theme accentColor= "red" appearance="light">
       <AuthContextComponent>
         <Router>
           <App />

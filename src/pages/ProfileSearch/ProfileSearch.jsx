@@ -122,7 +122,7 @@ const ProfileSearch = () => {
                   left: 0,
                   bottom: 0,
                   width: '100%',
-                  backgroundColor: 'black',
+                  backgroundColor: 'white',
                   textAlign: 'center',      // Center the buttons
                   padding: '10px 0'
                 }}>
