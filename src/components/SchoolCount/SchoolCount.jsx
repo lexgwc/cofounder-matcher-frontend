@@ -9,7 +9,7 @@ const SchoolCount = () => {
   });
 
   const schoolsArray = [
-    { id: "66fdee2830be8ce25339178e", name: "Harvard" },
+    // { id: "66fdee2830be8ce25339178e", name: "Harvard" },
     { id: "66fdebfe30be8ce2532f4805", name: "Stanford" },
   ];
 
@@ -36,7 +36,7 @@ const SchoolCount = () => {
             style={{
               flex: "0 0 calc(50% - 10px)",
               justifyContent: "center",
-              padding: "20px",
+              padding: "40px",
               width: "100%",
               textAlign: "center",
               minWidth: "150px",
@@ -44,7 +44,7 @@ const SchoolCount = () => {
             }}
           >
             <Heading>{schoolCounts[school.name]}</Heading>
-            <Text>{school.name}</Text>
+            {/* <Text>{school.name}</Text> */}
           </Card>
         ))}
       </Flex>
