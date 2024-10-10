@@ -143,7 +143,7 @@ const EditProfile = () => {
           width: '100%',
           textAlign: 'center'
         }}>
-        <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'rgba(17,17,17)', width: '100%', paddingTop: 50, paddingBottom: 10 }}>
+        <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'white', width: '100%', paddingTop: 50, paddingBottom: 10 }}>
           <>
             <Heading >Edit Profile</Heading>
             <br />
