@@ -9,11 +9,11 @@ form {
 }
 
 #birthDate, #profilePicture {
-  background-color: rgba(13, 13, 13, 0.3);
+  background-color: white;
   border-radius: 4px;
   padding: 8px;
-  color: rgb(238, 238, 238);
-  border: 1px solid rgba(72, 72, 72, 0.8);
+  color: rgb(131,131,131);
+  border: 1px solid rgba(206,206,206,1);
   width: 100%;
   max-width: 100%;
   appearance: none;
@@ -24,11 +24,11 @@ form {
 }
 
 #currentSchool, #programType, #technical, #hasIdea {
-  background-color: rgba(13, 13, 13, 0.2);
+  background-color: white;
   border-radius: 4px;
   padding: 8px;
-  color: rgba(238, 238, 238);
-  border: 1px solid rgba(72, 72, 72, 0.8);
+  color: rgb(131,131,131);
+  border: 1px solid rgba(206,206,206,1);
   width: 100%;
   max-width: 100%;
 }
