@@ -77,7 +77,7 @@ const ViewProfile = () => {
           width: '100%',
           textAlign: 'center'
         }}>
-        <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'black', width: '100%', paddingTop: 50, paddingBottom: 0 }}>
+        <Box display="block" style={{ justifyContent: 'center', position: 'fixed', top: 0, zIndex: 1000, backgroundColor: 'white', width: '100%', paddingTop: 50, paddingBottom: 0 }}>
           <>
             <Heading>Profile Details</Heading>
             <br />
@@ -185,7 +185,7 @@ const ViewProfile = () => {
           left: 0,
           bottom: 0,
           width: '100%',
-          backgroundColor: 'black',
+          backgroundColor: 'white',
           textAlign: 'center',
           padding: '10px 0'
         }}>

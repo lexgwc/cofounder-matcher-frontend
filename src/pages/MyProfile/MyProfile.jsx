@@ -12,8 +12,8 @@ const MyProfile = () => {
 
   const navigate = useNavigate();
 
-  const handleEditProfile = () => {
-    navigate('/edit-profile'); // Path to your edit profile page
+  const handleCreateProfile = () => {
+    navigate('/create-profile'); // Path to your edit profile page
   };
 
   useEffect(() => {
@@ -28,14 +28,26 @@ const MyProfile = () => {
         const userId = payload.userId;
         console.log(userId);
 
+      //   const apiResponse = await getProfileByUserId(userId);
+      //   if (apiResponse.status !== 200) {
+      //     throw new Error(`Failed to fetch: ${apiResponse.statusText || 'Unknown error'}`);
+      //   }
+      //   setProfile(apiResponse.data);
+      // } catch (error) {
+      //   console.error('Failed to fetch profile:', error);
+      //   setError(error.message);
+      // } finally {
+      //   setLoading(false);
+      // }
         const apiResponse = await getProfileByUserId(userId);
         if (apiResponse.status !== 200) {
-          throw new Error(`Failed to fetch: ${apiResponse.statusText || 'Unknown error'}`);
+          throw new Error(`Failed to fetch profile. Status: ${apiResponse.status}`);
         }
+
         setProfile(apiResponse.data);
       } catch (error) {
         console.error('Failed to fetch profile:', error);
-        setError(error.message);
+        setProfile(null); // Set profile to null if there's an error
       } finally {
         setLoading(false);
       }
@@ -70,6 +82,25 @@ const MyProfile = () => {
 
   if (error) {
     return <div>Error: {error}</div>;
+  }
+
+  if (!profile) {
+    // If no profile is found, display the message and button
+    return (
+      <Flex direction="column" 
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          textAlign: 'center',
+          marginTop: '50px'
+        }}>
+        <Heading size="4">Profile not found</Heading>
+        <Button onClick={handleCreateProfile} style={{ marginTop: '20px' }}>Create Profile</Button>
+      </Flex>
+    );
   }
 
   console.log(profile);
@@ -188,7 +219,7 @@ const MyProfile = () => {
         </Box>
         </Card>
 
-        <Button onClick={handleEditProfile} style={{marginBottom: '20px', minWidth: '100px'}}>Edit Profile</Button>
+        <Button onClick={handleCreateProfile} style={{marginBottom: '20px', minWidth: '100px'}}>Edit Profile</Button>
     </Flex>
   </>
   );
